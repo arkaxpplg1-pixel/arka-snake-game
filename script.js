@@ -769,7 +769,7 @@ function moveSnake() {
         // Speed bertambah
         speed =
             Math.min(
-                5 +
+                2 +
                 Math.floor(
                     score / 2
                 ),
@@ -1328,7 +1328,7 @@ function restartGame() {
 
     score = 0;
 
-    speed = 5;
+    speed = 2;
 
     gameOver = false;
 
