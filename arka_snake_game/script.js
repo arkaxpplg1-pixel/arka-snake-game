@@ -2,23 +2,243 @@
 // ARKA SNAKE GAME
 // ==========================================
 
+
+// ==========================================
+// CANVAS
+// ==========================================
+
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
 
-const splashScreen = document.getElementById("splashScreen");
-const gameContainer = document.getElementById("gameContainer");
 
-const loadingProgress = document.getElementById("loadingProgress");
-const loadingPercent = document.getElementById("loadingPercent");
-const loadingText = document.getElementById("loadingText");
+// ==========================================
+// ELEMENT GAME
+// ==========================================
 
-const scoreText = document.getElementById("score");
-const speedText = document.getElementById("speed");
-const finalScoreText = document.getElementById("finalScore");
+const splashScreen =
+    document.getElementById("splashScreen");
 
-const notification = document.getElementById("notification");
-const gameOverScreen = document.getElementById("gameOver");
-const restartButton = document.getElementById("restartButton");
+const gameContainer =
+    document.getElementById("gameContainer");
+
+const loadingProgress =
+    document.getElementById("loadingProgress");
+
+const loadingPercent =
+    document.getElementById("loadingPercent");
+
+const loadingText =
+    document.getElementById("loadingText");
+
+const scoreText =
+    document.getElementById("score");
+
+const speedText =
+    document.getElementById("speed");
+
+const finalScoreText =
+    document.getElementById("finalScore");
+
+const notification =
+    document.getElementById("notification");
+
+const gameOverScreen =
+    document.getElementById("gameOver");
+
+const restartButton =
+    document.getElementById("restartButton");
+
+
+// ==========================================
+// AUDIO
+// ==========================================
+
+const mainBackground =
+    document.getElementById("mainBackground");
+
+const coinSound =
+    document.getElementById("coinSound");
+
+const gameOverSound =
+    document.getElementById("gameOverSound");
+
+const musicButton =
+    document.getElementById("musicButton");
+
+
+// ==========================================
+// PENGATURAN AUDIO
+// ==========================================
+
+// Hanya backsound utama yang dikontrol
+// oleh tombol MUSIC ON / OFF.
+
+let musicEnabled = true;
+
+
+// Volume backsound utama
+mainBackground.volume = 0.35;
+
+
+// Volume sound effect
+coinSound.volume = 0.75;
+gameOverSound.volume = 0.85;
+
+
+// ==========================================
+// MEMULAI BACKSOUND
+// ==========================================
+
+function playMainBackground() {
+
+    if (!musicEnabled) {
+        return;
+    }
+
+    mainBackground.volume = 0.35;
+
+    const playPromise =
+        mainBackground.play();
+
+    if (
+        playPromise !== undefined
+    ) {
+
+        playPromise.catch(() => {
+
+            // Browser dapat memblokir
+            // autoplay audio.
+
+        });
+
+    }
+}
+
+
+// ==========================================
+// MENGHENTIKAN BACKSOUND
+// ==========================================
+
+function stopMainBackground() {
+
+    mainBackground.pause();
+
+    mainBackground.currentTime = 0;
+}
+
+
+// ==========================================
+// SOUND COIN
+// ==========================================
+
+function playCoinSound() {
+
+    // Sound coin TIDAK terpengaruh
+    // oleh MUSIC ON / OFF.
+
+    coinSound.currentTime = 0;
+
+    const playPromise =
+        coinSound.play();
+
+    if (
+        playPromise !== undefined
+    ) {
+
+        playPromise.catch(() => {
+
+            // Abaikan jika browser
+            // memblokir audio.
+
+        });
+
+    }
+}
+
+
+// ==========================================
+// SOUND GAME OVER
+// ==========================================
+
+function playGameOverSound() {
+
+    // Sound Game Over TIDAK terpengaruh
+    // oleh MUSIC ON / OFF.
+
+    gameOverSound.currentTime = 0;
+
+    const playPromise =
+        gameOverSound.play();
+
+    if (
+        playPromise !== undefined
+    ) {
+
+        playPromise.catch(() => {
+
+            // Abaikan jika browser
+            // memblokir audio.
+
+        });
+
+    }
+}
+
+
+// ==========================================
+// UPDATE TOMBOL MUSIK
+// ==========================================
+
+function updateMusicButton() {
+
+    if (musicEnabled) {
+
+        musicButton.textContent =
+            "🔊 MUSIC ON";
+
+        musicButton.classList.remove(
+            "music-off"
+        );
+
+    } else {
+
+        musicButton.textContent =
+            "🔇 MUSIC OFF";
+
+        musicButton.classList.add(
+            "music-off"
+        );
+    }
+}
+
+
+// ==========================================
+// TOGGLE MUSIC
+// ==========================================
+
+musicButton.addEventListener(
+    "click",
+    function() {
+
+        musicEnabled =
+            !musicEnabled;
+
+
+        if (musicEnabled) {
+
+            playMainBackground();
+
+        } else {
+
+            stopMainBackground();
+
+        }
+
+
+        updateMusicButton();
+
+    }
+);
 
 
 // ==========================================
@@ -59,6 +279,7 @@ let moveTimer = 0;
 // ==========================================
 
 const FOOD_COLORS = [
+
     "#ff4f81",
     "#ffb347",
     "#ffe066",
@@ -67,6 +288,7 @@ const FOOD_COLORS = [
     "#6d7cff",
     "#c66cff",
     "#ff66d9"
+
 ];
 
 
@@ -98,35 +320,61 @@ function getSnakeColor() {
 
 function resizeCanvas() {
 
-    const area = document.getElementById("gameArea");
+    const area =
+        document.getElementById("gameArea");
 
-    const oldWidth = canvasWidth;
-    const oldHeight = canvasHeight;
+    const oldWidth =
+        canvasWidth;
+
+    const oldHeight =
+        canvasHeight;
+
 
     canvasWidth =
-        Math.floor(area.clientWidth / GRID_SIZE)
-        * GRID_SIZE;
+        Math.floor(
+            area.clientWidth /
+            GRID_SIZE
+        ) * GRID_SIZE;
+
 
     canvasHeight =
-        Math.floor(area.clientHeight / GRID_SIZE)
-        * GRID_SIZE;
+        Math.floor(
+            area.clientHeight /
+            GRID_SIZE
+        ) * GRID_SIZE;
 
 
-    if (canvasWidth < GRID_SIZE * 10) {
-        canvasWidth = GRID_SIZE * 10;
+    if (
+        canvasWidth <
+        GRID_SIZE * 10
+    ) {
+
+        canvasWidth =
+            GRID_SIZE * 10;
     }
 
-    if (canvasHeight < GRID_SIZE * 8) {
-        canvasHeight = GRID_SIZE * 8;
+
+    if (
+        canvasHeight <
+        GRID_SIZE * 8
+    ) {
+
+        canvasHeight =
+            GRID_SIZE * 8;
     }
 
 
-    canvas.width = canvasWidth;
-    canvas.height = canvasHeight;
+    canvas.width =
+        canvasWidth;
+
+    canvas.height =
+        canvasHeight;
 
 
     // Jika game sudah berjalan,
-    // pastikan posisi ular tetap berada di area
+    // pastikan posisi ular tetap berada
+    // pada grid.
+
     if (
         snake.length > 0 &&
         oldWidth > 0 &&
@@ -136,12 +384,17 @@ function resizeCanvas() {
         snake.forEach(part => {
 
             part.x =
-                Math.floor(part.x / GRID_SIZE)
-                * GRID_SIZE;
+                Math.floor(
+                    part.x /
+                    GRID_SIZE
+                ) * GRID_SIZE;
+
 
             part.y =
-                Math.floor(part.y / GRID_SIZE)
-                * GRID_SIZE;
+                Math.floor(
+                    part.y /
+                    GRID_SIZE
+                ) * GRID_SIZE;
 
         });
     }
@@ -155,12 +408,19 @@ function resizeCanvas() {
 function createSnake() {
 
     const centerX =
-        Math.floor(canvasWidth / 2 / GRID_SIZE)
-        * GRID_SIZE;
+        Math.floor(
+            canvasWidth /
+            2 /
+            GRID_SIZE
+        ) * GRID_SIZE;
+
 
     const centerY =
-        Math.floor(canvasHeight / 2 / GRID_SIZE)
-        * GRID_SIZE;
+        Math.floor(
+            canvasHeight /
+            2 /
+            GRID_SIZE
+        ) * GRID_SIZE;
 
 
     snake = [
@@ -171,12 +431,18 @@ function createSnake() {
         },
 
         {
-            x: centerX - GRID_SIZE,
+            x:
+                centerX -
+                GRID_SIZE,
+
             y: centerY
         },
 
         {
-            x: centerX - GRID_SIZE * 2,
+            x:
+                centerX -
+                GRID_SIZE * 2,
+
             y: centerY
         }
 
@@ -191,22 +457,31 @@ function createSnake() {
 function randomPosition() {
 
     const columns =
-        Math.floor(canvasWidth / GRID_SIZE);
+        Math.floor(
+            canvasWidth /
+            GRID_SIZE
+        );
+
 
     const rows =
-        Math.floor(canvasHeight / GRID_SIZE);
+        Math.floor(
+            canvasHeight /
+            GRID_SIZE
+        );
 
 
     return {
 
         x:
             Math.floor(
-                Math.random() * columns
+                Math.random() *
+                columns
             ) * GRID_SIZE,
 
         y:
             Math.floor(
-                Math.random() * rows
+                Math.random() *
+                rows
             ) * GRID_SIZE
 
     };
@@ -219,7 +494,9 @@ function randomPosition() {
 
 function positionIsFree(position) {
 
-    for (const part of snake) {
+    for (
+        const part of snake
+    ) {
 
         if (
             part.x === position.x &&
@@ -231,7 +508,9 @@ function positionIsFree(position) {
     }
 
 
-    for (const food of foods) {
+    for (
+        const food of foods
+    ) {
 
         if (
             food.x === position.x &&
@@ -259,15 +538,22 @@ function createFood() {
 
     do {
 
-        position = randomPosition();
+        position =
+            randomPosition();
 
         attempts++;
 
-        if (attempts > 100) {
+
+        if (
+            attempts > 100
+        ) {
+
             break;
         }
 
-    } while (!positionIsFree(position));
+    } while (
+        !positionIsFree(position)
+    );
 
 
     return {
@@ -278,8 +564,8 @@ function createFood() {
         color:
             FOOD_COLORS[
                 Math.floor(
-                    Math.random()
-                    * FOOD_COLORS.length
+                    Math.random() *
+                    FOOD_COLORS.length
                 )
             ]
 
@@ -345,15 +631,28 @@ function resetGame() {
     createFoods();
 
 
-    scoreText.textContent = score;
+    scoreText.textContent =
+        score;
 
-    speedText.textContent = speed;
+    speedText.textContent =
+        speed;
 
 
-    gameOverScreen.classList.remove("show");
+    gameOverScreen.classList.remove(
+        "show"
+    );
 
 
     gameRunning = true;
+
+
+    // Main background hanya dimainkan
+    // jika Music ON.
+
+    if (musicEnabled) {
+
+        playMainBackground();
+    }
 }
 
 
@@ -377,7 +676,10 @@ function drawGrid() {
 
         ctx.beginPath();
 
-        ctx.moveTo(x, 0);
+        ctx.moveTo(
+            x,
+            0
+        );
 
         ctx.lineTo(
             x,
@@ -396,7 +698,10 @@ function drawGrid() {
 
         ctx.beginPath();
 
-        ctx.moveTo(0, y);
+        ctx.moveTo(
+            0,
+            y
+        );
 
         ctx.lineTo(
             canvasWidth,
@@ -409,40 +714,49 @@ function drawGrid() {
 
 
 // ==========================================
-// MAKANAN BULAT SEMI TRANSPARAN
+// MAKANAN BULAT
 // ==========================================
 
 function drawFood(food) {
 
     const centerX =
-        food.x + GRID_SIZE / 2;
+        food.x +
+        GRID_SIZE / 2;
 
     const centerY =
-        food.y + GRID_SIZE / 2;
+        food.y +
+        GRID_SIZE / 2;
 
 
     ctx.save();
 
 
-    // Efek glow
-    ctx.shadowColor = food.color;
+    // Glow
+    ctx.shadowColor =
+        food.color;
+
     ctx.shadowBlur = 15;
 
 
     // Lingkaran utama
     ctx.globalAlpha = 0.67;
 
-    ctx.fillStyle = food.color;
+    ctx.fillStyle =
+        food.color;
 
 
     ctx.beginPath();
 
     ctx.arc(
+
         centerX,
         centerY,
+
         GRID_SIZE * 0.40,
+
         0,
         Math.PI * 2
+
     );
 
     ctx.fill();
@@ -451,17 +765,22 @@ function drawFood(food) {
     // Highlight
     ctx.globalAlpha = 0.45;
 
-    ctx.fillStyle = "#ffffff";
+    ctx.fillStyle =
+        "#ffffff";
 
 
     ctx.beginPath();
 
     ctx.arc(
+
         centerX - 3,
         centerY - 3,
+
         GRID_SIZE * 0.13,
+
         0,
         Math.PI * 2
+
     );
 
     ctx.fill();
@@ -483,7 +802,9 @@ function drawSnakeEyes(head) {
     let eye2;
 
 
-    if (direction.x === 1) {
+    if (
+        direction.x === 1
+    ) {
 
         eye1 = {
             x: head.x + 14,
@@ -495,7 +816,10 @@ function drawSnakeEyes(head) {
             y: head.y + 15
         };
 
-    } else if (direction.x === -1) {
+
+    } else if (
+        direction.x === -1
+    ) {
 
         eye1 = {
             x: head.x + 6,
@@ -507,7 +831,10 @@ function drawSnakeEyes(head) {
             y: head.y + 15
         };
 
-    } else if (direction.y === -1) {
+
+    } else if (
+        direction.y === -1
+    ) {
 
         eye1 = {
             x: head.x + 5,
@@ -518,6 +845,7 @@ function drawSnakeEyes(head) {
             x: head.x + 15,
             y: head.y + 6
         };
+
 
     } else {
 
@@ -534,7 +862,8 @@ function drawSnakeEyes(head) {
 
 
     // Mata putih
-    ctx.fillStyle = "#ffffff";
+    ctx.fillStyle =
+        "#ffffff";
 
 
     ctx.beginPath();
@@ -564,7 +893,8 @@ function drawSnakeEyes(head) {
 
 
     // Pupil
-    ctx.fillStyle = "#050505";
+    ctx.fillStyle =
+        "#050505";
 
 
     ctx.beginPath();
@@ -614,7 +944,9 @@ function drawSnake() {
     snake.forEach(
         (part, index) => {
 
-            if (index === 0) {
+            if (
+                index === 0
+            ) {
 
                 ctx.fillStyle =
                     headColor;
@@ -626,14 +958,14 @@ function drawSnake() {
             }
 
 
-            // Persegi sempurna
-            // tanpa rongga
-            // tanpa corner
             ctx.fillRect(
+
                 part.x,
                 part.y,
+
                 GRID_SIZE,
                 GRID_SIZE
+
             );
 
         }
@@ -647,7 +979,7 @@ function drawSnake() {
 
 
 // ==========================================
-// WARNA KEPALA LEBIH GELAP
+// WARNA KEPALA
 // ==========================================
 
 function darkenColor(
@@ -656,26 +988,38 @@ function darkenColor(
 ) {
 
     let color =
-        hex.replace("#", "");
+        hex.replace(
+            "#",
+            ""
+        );
 
 
     let r =
         parseInt(
-            color.substring(0, 2),
+            color.substring(
+                0,
+                2
+            ),
             16
         );
 
 
     let g =
         parseInt(
-            color.substring(2, 4),
+            color.substring(
+                2,
+                4
+            ),
             16
         );
 
 
     let b =
         parseInt(
-            color.substring(4, 6),
+            color.substring(
+                4,
+                6
+            ),
             16
         );
 
@@ -708,30 +1052,33 @@ function darkenColor(
 
 function drawGame() {
 
-    // Background
-    ctx.fillStyle = "#1e1e2d";
+    ctx.fillStyle =
+        "#1e1e2d";
+
 
     ctx.fillRect(
+
         0,
         0,
+
         canvasWidth,
         canvasHeight
+
     );
 
 
-    // Grid
     drawGrid();
 
 
-    // Makanan
     foods.forEach(
         food => {
+
             drawFood(food);
+
         }
     );
 
 
-    // Ular
     drawSnake();
 }
 
@@ -776,8 +1123,10 @@ function isCollision(
 function moveSnake() {
 
     direction = {
+
         x: nextDirection.x,
         y: nextDirection.y
+
     };
 
 
@@ -876,7 +1225,10 @@ function moveSnake() {
             )
         ) {
 
-            // Score bertambah
+            // ==================================
+            // SCORE
+            // ==================================
+
             score++;
 
 
@@ -884,14 +1236,20 @@ function moveSnake() {
                 score;
 
 
-            // Kecepatan bertambah
+            // ==================================
+            // SPEED
+            // ==================================
+
             speed =
                 Math.min(
+
                     5 +
                     Math.floor(
                         score / 2
                     ),
+
                     20
+
                 );
 
 
@@ -899,20 +1257,36 @@ function moveSnake() {
                 speed;
 
 
-            // Hapus makanan
+            // ==================================
+            // SOUND COIN
+            // ==================================
+
+            playCoinSound();
+
+
+            // ==================================
+            // HAPUS MAKANAN
+            // ==================================
+
             foods.splice(
                 i,
                 1
             );
 
 
-            // Buat makanan baru
+            // ==================================
+            // BUAT MAKANAN BARU
+            // ==================================
+
             foods.push(
                 createFood()
             );
 
 
-            // Notifikasi
+            // ==================================
+            // NOTIFIKASI
+            // ==================================
+
             showNotification();
 
 
@@ -925,7 +1299,7 @@ function moveSnake() {
 
 
     // ======================================
-    // JIKA TIDAK MAKAN,
+    // JIKA TIDAK MAKAN
     // HAPUS EKOR
     // ======================================
 
@@ -1002,6 +1376,20 @@ function endGame() {
     gameOverScreen.classList.add(
         "show"
     );
+
+
+    // ==================================
+    // MATIKAN BACKSOUND UTAMA
+    // ==================================
+
+    stopMainBackground();
+
+
+    // ==================================
+    // MAIN GAME OVER SOUND
+    // ==================================
+
+    playGameOverSound();
 }
 
 
@@ -1017,23 +1405,29 @@ function gameLoop(timestamp) {
 
 
     if (!lastTime) {
-        lastTime = timestamp;
+
+        lastTime =
+            timestamp;
     }
 
 
     const deltaTime =
-        timestamp - lastTime;
+        timestamp -
+        lastTime;
 
 
-    lastTime = timestamp;
+    lastTime =
+        timestamp;
 
 
-    // Kecepatan berdasarkan score
     const moveDelay =
         Math.max(
+
             45,
+
             180 -
             speed * 7
+
         );
 
 
@@ -1073,7 +1467,10 @@ document.addEventListener(
             event.key.toLowerCase();
 
 
+        // ==================================
         // SPACE
+        // ==================================
+
         if (
             event.code === "Space"
         ) {
@@ -1085,19 +1482,25 @@ document.addEventListener(
 
                 resetGame();
 
+
                 lastTime =
                     performance.now();
+
 
                 requestAnimationFrame(
                     gameLoop
                 );
             }
 
+
             return;
         }
 
 
+        // ==================================
         // ATAS / W
+        // ==================================
+
         if (
 
             key === "arrowup" ||
@@ -1112,7 +1515,10 @@ document.addEventListener(
         }
 
 
+        // ==================================
         // BAWAH / S
+        // ==================================
+
         else if (
 
             key === "arrowdown" ||
@@ -1127,7 +1533,10 @@ document.addEventListener(
         }
 
 
+        // ==================================
         // KIRI / A
+        // ==================================
+
         else if (
 
             key === "arrowleft" ||
@@ -1142,7 +1551,10 @@ document.addEventListener(
         }
 
 
+        // ==================================
         // KANAN / D
+        // ==================================
+
         else if (
 
             key === "arrowright" ||
@@ -1170,10 +1582,13 @@ function changeDirection(
 ) {
 
     // Mencegah ular
-    // berbalik langsung
+    // berbalik langsung.
+
     if (
+
         direction.x === -x &&
         direction.y === -y
+
     ) {
 
         return;
@@ -1181,8 +1596,10 @@ function changeDirection(
 
 
     nextDirection = {
+
         x: x,
         y: y
+
     };
 }
 
@@ -1205,6 +1622,7 @@ controlButtons.forEach(
             function(event) {
 
                 event.preventDefault();
+
 
                 const dir =
                     button.dataset.direction;
@@ -1308,12 +1726,9 @@ canvas.addEventListener(
             touchStartY;
 
 
-        const minSwipe =
-            25;
+        const minSwipe = 25;
 
 
-        // Jika gerakan terlalu kecil,
-        // dianggap bukan swipe
         if (
 
             Math.abs(deltaX) <
@@ -1328,7 +1743,7 @@ canvas.addEventListener(
         }
 
 
-        // Swipe horizontal
+        // Horizontal
         if (
             Math.abs(deltaX) >
             Math.abs(deltaY)
@@ -1354,7 +1769,7 @@ canvas.addEventListener(
         }
 
 
-        // Swipe vertical
+        // Vertical
         else {
 
             if (
@@ -1390,10 +1805,18 @@ restartButton.addEventListener(
     "click",
     function() {
 
+        // Hentikan suara Game Over
+        gameOverSound.pause();
+
+        gameOverSound.currentTime = 0;
+
+
         resetGame();
+
 
         lastTime =
             performance.now();
+
 
         requestAnimationFrame(
             gameLoop
@@ -1412,11 +1835,16 @@ let loadingFinished = false;
 let loadingStarted = false;
 
 
+// ==========================================
+// START LOADING
+// ==========================================
+
 function startLoading() {
 
     if (loadingStarted) {
         return;
     }
+
 
     loadingStarted = true;
 
@@ -1443,17 +1871,26 @@ function startLoading() {
                     );
 
 
-                    loadingFinished =
-                        true;
+                    loadingFinished = true;
 
 
                     loadingText.textContent =
                         "SYSTEM READY";
 
 
+                    loadingProgress.style.width =
+                        "100%";
+
+
+                    loadingPercent.textContent =
+                        "100%";
+
+
                     setTimeout(
                         () => {
+
                             startGame();
+
                         },
                         500
                     );
@@ -1522,8 +1959,7 @@ document.addEventListener(
             event.preventDefault();
 
 
-            loadingFinished =
-                true;
+            loadingFinished = true;
 
 
             loading = 100;
@@ -1543,7 +1979,9 @@ document.addEventListener(
 
             setTimeout(
                 () => {
+
                     startGame();
+
                 },
                 200
             );
@@ -1580,7 +2018,56 @@ function startGame() {
     requestAnimationFrame(
         gameLoop
     );
+
+
+    // Mulai backsound setelah
+    // loading selesai.
+
+    playMainBackground();
 }
+
+
+// ==========================================
+// MEMBANTU AUTOPLAY AUDIO
+// ==========================================
+
+// Beberapa browser memblokir
+// autoplay audio tanpa interaksi user.
+//
+// Jika sebelumnya diblokir, audio akan
+// dicoba kembali ketika user melakukan
+// interaksi pertama.
+
+function unlockAudio() {
+
+    if (
+        musicEnabled &&
+        mainBackground.paused &&
+        gameRunning
+    ) {
+
+        playMainBackground();
+    }
+
+}
+
+
+document.addEventListener(
+    "pointerdown",
+    unlockAudio,
+    {
+        once: true
+    }
+);
+
+
+document.addEventListener(
+    "keydown",
+    unlockAudio,
+    {
+        once: true
+    }
+);
 
 
 // ==========================================
@@ -1618,6 +2105,13 @@ window.addEventListener(
 
     }
 );
+
+
+// ==========================================
+// INISIALISASI TOMBOL MUSIK
+// ==========================================
+
+updateMusicButton();
 
 
 // ==========================================
