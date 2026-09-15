@@ -1,11 +1,12 @@
-/* =========================
+/* ==================================================
    RESET
-========================= */
+================================================== */
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+
     -webkit-tap-highlight-color: transparent;
 }
 
@@ -18,17 +19,18 @@ body {
 
 
 body {
+
     overflow: hidden;
 
     background:
         radial-gradient(
             circle at center,
-            #111827 0%,
-            #070b16 45%,
+            #101827 0%,
+            #070b16 50%,
             #02040a 100%
         );
 
-    color: white;
+    color: #ffffff;
 
     font-family:
         "Segoe UI",
@@ -37,11 +39,13 @@ body {
 }
 
 
-/* =========================
+
+/* ==================================================
    SPLASH SCREEN
-========================= */
+================================================== */
 
 #splashScreen {
+
     position: fixed;
 
     inset: 0;
@@ -51,6 +55,7 @@ body {
     display: flex;
 
     align-items: center;
+
     justify-content: center;
 
     overflow: hidden;
@@ -58,21 +63,20 @@ body {
     background:
         radial-gradient(
             circle at center,
-            #172554 0%,
-            #0b1120 45%,
-            #020617 100%
+            #13213c 0%,
+            #080e1d 50%,
+            #02050c 100%
         );
 }
 
 
-#splashScreen::before {
-    content: "";
+.splash-grid {
 
     position: absolute;
 
     inset: 0;
 
-    opacity: 0.22;
+    opacity: 0.25;
 
     background-image:
         linear-gradient(
@@ -87,7 +91,8 @@ body {
 
     background-size: 40px 40px;
 
-    animation: gridMove 8s linear infinite;
+    animation:
+        gridMove 8s linear infinite;
 }
 
 
@@ -105,6 +110,7 @@ body {
 
 
 .scan-line {
+
     position: absolute;
 
     left: 0;
@@ -121,11 +127,12 @@ body {
 
     opacity: 0.7;
 
-    animation: scan 3s linear infinite;
+    animation:
+        scanMove 3s linear infinite;
 }
 
 
-@keyframes scan {
+@keyframes scanMove {
 
     0% {
         top: -5%;
@@ -139,20 +146,23 @@ body {
 
 
 .splash-content {
+
     position: relative;
 
     z-index: 2;
 
-    width: min(90vw, 600px);
+    width: min(90vw, 650px);
 
     text-align: center;
 }
 
 
 .splash-content h1 {
+
     margin-top: 25px;
 
-    font-size: clamp(28px, 5vw, 48px);
+    font-size:
+        clamp(28px, 5vw, 48px);
 
     font-weight: 900;
 
@@ -167,24 +177,28 @@ body {
 
 
 .subtitle {
+
     margin-top: 10px;
+
+    color: #94a3b8;
 
     font-size: 12px;
 
     letter-spacing: 4px;
-
-    color: #94a3b8;
 }
 
 
-/* =========================
+
+/* ==================================================
    SNAKE LOGO
-========================= */
+================================================== */
 
 .snake-logo {
+
     position: relative;
 
     width: 170px;
+
     height: 90px;
 
     margin: auto;
@@ -192,12 +206,15 @@ body {
 
 
 .logo-head {
+
     position: absolute;
 
     right: 5px;
+
     top: 8px;
 
     width: 55px;
+
     height: 55px;
 
     background: #22c55e;
@@ -210,33 +227,41 @@ body {
 
 
 .logo-eye {
+
     position: absolute;
 
     width: 8px;
+
     height: 8px;
 
     border-radius: 50%;
 
-    background: white;
+    background: #ffffff;
 }
 
 
 .logo-eye.left {
+
     top: 10px;
+
     left: 11px;
 }
 
 
 .logo-eye.right {
+
+    right: 10px;
+
     bottom: 10px;
-    right: 11px;
 }
 
 
 .logo-body {
+
     position: absolute;
 
     width: 45px;
+
     height: 45px;
 
     background: #16a34a;
@@ -247,28 +272,36 @@ body {
 
 
 .body-1 {
+
     right: 55px;
+
     top: 27px;
 }
 
 
 .body-2 {
+
     right: 93px;
+
     top: 45px;
 }
 
 
 .body-3 {
+
     right: 125px;
+
     top: 20px;
 }
 
 
-/* =========================
+
+/* ==================================================
    LOADING
-========================= */
+================================================== */
 
 .loading-box {
+
     width: 100%;
 
     margin-top: 35px;
@@ -276,22 +309,25 @@ body {
 
 
 .loading-bar {
+
     width: 100%;
+
     height: 8px;
 
     overflow: hidden;
 
-    border: 1px solid #334155;
+    border:
+        1px solid
+        rgba(56, 189, 248, 0.3);
 
     background: #0f172a;
-
-    box-shadow:
-        inset 0 0 8px rgba(0, 0, 0, 0.8);
 }
 
 
 #loadingProgress {
+
     width: 0%;
+
     height: 100%;
 
     background: #38bdf8;
@@ -299,35 +335,41 @@ body {
     box-shadow:
         0 0 12px #38bdf8;
 
-    transition: width 0.15s linear;
+    transition:
+        width 0.15s linear;
 }
 
 
 .loading-info {
+
     display: flex;
+
+    align-items: center;
 
     justify-content: space-between;
 
     margin-top: 8px;
 
+    color: #64748b;
+
     font-size: 11px;
 
     letter-spacing: 2px;
-
-    color: #64748b;
 }
 
 
 .skip-text {
+
     margin-top: 25px;
+
+    color: #475569;
 
     font-size: 10px;
 
     letter-spacing: 2px;
 
-    color: #475569;
-
-    animation: blink 1.2s infinite;
+    animation:
+        blink 1.2s infinite;
 }
 
 
@@ -340,12 +382,15 @@ body {
 }
 
 
-/* =========================
+
+/* ==================================================
    GAME CONTAINER
-========================= */
+================================================== */
 
 #gameContainer {
+
     width: 100%;
+
     height: 100vh;
 
     display: none;
@@ -356,22 +401,26 @@ body {
 
     justify-content: flex-start;
 
-    gap: 8px;
+    gap: 7px;
 
-    padding: 10px;
+    padding:
+        10px 10px 5px;
 
     overflow: hidden;
 }
 
 
-/* =========================
+
+/* ==================================================
    TOP BAR
-========================= */
+================================================== */
 
 .top-bar {
-    width: min(94vw, 1200px);
 
-    min-height: 55px;
+    width:
+        min(98vw, 1400px);
+
+    min-height: 52px;
 
     display: flex;
 
@@ -379,37 +428,68 @@ body {
 
     justify-content: space-between;
 
-    gap: 15px;
+    gap: 20px;
 
-    padding: 8px 12px;
+    padding:
+        6px 14px;
 
-    border: 1px solid rgba(56, 189, 248, 0.25);
+    border:
+        1px solid
+        rgba(56, 189, 248, 0.28);
 
     background:
-        rgba(15, 23, 42, 0.9);
+        linear-gradient(
+            90deg,
+            rgba(8, 15, 31, 0.96),
+            rgba(13, 23, 42, 0.92),
+            rgba(8, 15, 31, 0.96)
+        );
 
     box-shadow:
-        0 0 20px rgba(0, 0, 0, 0.3);
+        0 0 25px rgba(0, 0, 0, 0.35),
+        inset 0 -1px 0 rgba(56, 189, 248, 0.08);
 }
 
 
 .game-title {
-    font-size: clamp(18px, 2vw, 27px);
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    white-space: nowrap;
+
+    font-size:
+        clamp(18px, 2vw, 25px);
 
     font-weight: 900;
 
     letter-spacing: 2px;
-
-    white-space: nowrap;
 }
 
 
-.game-title span {
-    color: #38bdf8;
+.title-main {
+
+    color: #f8fafc;
+
+    text-shadow:
+        0 0 8px rgba(255, 255, 255, 0.15);
+}
+
+
+.title-accent {
+
+    color: #34d399;
+
+    text-shadow:
+        0 0 10px rgba(52, 211, 153, 0.45);
 }
 
 
 .game-stats {
+
     display: flex;
 
     align-items: center;
@@ -417,15 +497,12 @@ body {
     justify-content: flex-end;
 
     gap: 8px;
-
-    flex-wrap: nowrap;
 }
 
 
-.score-box,
-.speed-box,
-#musicButton {
-    height: 36px;
+.stat-box {
+
+    height: 35px;
 
     display: flex;
 
@@ -433,179 +510,415 @@ body {
 
     justify-content: center;
 
-    padding: 0 13px;
+    min-width: 115px;
 
-    border: 1px solid rgba(56, 189, 248, 0.3);
+    padding:
+        0 12px;
 
-    background: rgba(2, 6, 23, 0.8);
+    border:
+        1px solid
+        rgba(56, 189, 248, 0.2);
 
-    color: #cbd5e1;
+    background:
+        rgba(2, 6, 23, 0.7);
 
-    font-size: 12px;
+    font-size: 11px;
+
+    letter-spacing: 1px;
+}
+
+
+.stat-label {
+
+    color: #64748b;
 
     font-weight: 700;
+}
+
+
+.stat-colon {
+
+    margin:
+        0 5px;
+
+    color: #334155;
+}
+
+
+.stat-value {
+
+    color: #f8fafc;
+
+    font-size: 14px;
+
+    font-weight: 900;
+
+    text-shadow:
+        0 0 8px rgba(56, 189, 248, 0.4);
+}
+
+
+
+/* ==================================================
+   MUSIC BUTTON
+================================================== */
+
+#musicButton {
+
+    height: 35px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 6px;
+
+    min-width: 105px;
+
+    padding:
+        0 12px;
+
+    border:
+        1px solid
+        rgba(52, 211, 153, 0.5);
+
+    background:
+        rgba(6, 24, 22, 0.7);
+
+    color: #6ee7b7;
+
+    font-family: inherit;
+
+    font-size: 10px;
+
+    font-weight: 800;
 
     letter-spacing: 1px;
 
-    white-space: nowrap;
-}
-
-
-.score-box span,
-.speed-box span {
-    margin-left: 5px;
-
-    color: #38bdf8;
-
-    font-size: 14px;
-}
-
-
-#musicButton {
-    border: 1px solid #22c55e;
-
-    color: #86efac;
-
     cursor: pointer;
-
-    font-family: inherit;
 
     transition:
         0.2s ease;
 
-    user-select: none;
+    box-shadow:
+        inset 0 0 10px
+        rgba(52, 211, 153, 0.04);
 }
 
 
 #musicButton:hover {
-    background: rgba(34, 197, 94, 0.12);
+
+    background:
+        rgba(52, 211, 153, 0.12);
+
+    border-color:
+        #34d399;
 
     box-shadow:
-        0 0 12px rgba(34, 197, 94, 0.25);
+        0 0 15px
+        rgba(52, 211, 153, 0.2);
 }
 
 
 #musicButton.off {
-    border-color: #475569;
 
-    color: #94a3b8;
+    border-color:
+        rgba(100, 116, 139, 0.5);
+
+    background:
+        rgba(15, 23, 42, 0.8);
+
+    color: #64748b;
 }
 
 
 #musicButton.off:hover {
-    background: rgba(148, 163, 184, 0.08);
+
+    border-color:
+        #94a3b8;
+
+    color: #cbd5e1;
 }
 
 
-/* =========================
+
+/* ==================================================
    GAME AREA
-========================= */
+================================================== */
 
 #gameArea {
+
     position: relative;
 
-    width: min(
-        94vw,
-        calc((100vh - 205px) * 1.3333),
-        1200px
-    );
+    width:
+        min(98vw, 1400px);
 
-    aspect-ratio: 4 / 3;
+    /*
+       Tinggi otomatis mengikuti
+       ukuran desktop pengguna.
+    */
+
+    height:
+        min(
+            calc(100vh - 190px),
+            720px
+        );
+
+    min-height: 260px;
 
     overflow: hidden;
 
-    border: 1px solid rgba(56, 189, 248, 0.4);
+    border:
+        2px solid
+        rgba(56, 189, 248, 0.38);
 
     background: #020617;
 
     box-shadow:
-        0 0 30px rgba(0, 0, 0, 0.55),
-        inset 0 0 25px rgba(0, 0, 0, 0.5);
+        0 0 25px rgba(0, 0, 0, 0.5),
+        inset 0 0 25px rgba(0, 0, 0, 0.4);
+}
+
+
+#gameArea::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 2;
+
+    pointer-events: none;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.025);
 }
 
 
 #gameCanvas {
+
     display: block;
 
     width: 100%;
+
     height: 100%;
 
     touch-action: none;
 }
 
 
-/* =========================
-   NOTIFICATION
-========================= */
 
-#notification {
+/* ==================================================
+   GAME SCAN LINE
+================================================== */
+
+.game-scan-line {
+
     position: absolute;
 
-    top: 12px;
-    left: 50%;
+    left: 0;
 
-    transform: translateX(-50%);
+    top: -10px;
 
-    z-index: 20;
+    width: 100%;
 
-    min-width: 120px;
+    height: 1px;
 
-    text-align: center;
-
-    font-size: 16px;
-
-    font-weight: 900;
-
-    letter-spacing: 2px;
-
-    color: #f8fafc;
+    z-index: 3;
 
     pointer-events: none;
 
+    background:
+        rgba(56, 189, 248, 0.22);
+
+    box-shadow:
+        0 0 8px
+        rgba(56, 189, 248, 0.35);
+
+    animation:
+        gameScan 5s linear infinite;
+}
+
+
+@keyframes gameScan {
+
+    0% {
+        top: 0%;
+    }
+
+    100% {
+        top: 100%;
+    }
+
+}
+
+
+
+/* ==================================================
+   FOOD NOTIFICATION
+================================================== */
+
+#notification {
+
+    position: absolute;
+
+    top: 50%;
+
+    left: 50%;
+
+    z-index: 20;
+
+    min-width: 190px;
+
+    padding:
+        10px 20px;
+
+    text-align: center;
+
     opacity: 0;
+
+    pointer-events: none;
+
+    transform:
+        translate(-50%, -50%)
+        scale(0.7);
+
+    border:
+        1px solid
+        rgba(52, 211, 153, 0.65);
+
+    background:
+        rgba(2, 15, 20, 0.82);
+
+    box-shadow:
+        0 0 20px
+        rgba(52, 211, 153, 0.22);
+
+    backdrop-filter: blur(4px);
 }
 
 
 #notification.show {
-    animation: notificationAnimation 0.8s ease;
+
+    animation:
+        foodNotification 0.85s ease forwards;
 }
 
 
-@keyframes notificationAnimation {
+.notification-line {
+
+    width: 35px;
+
+    height: 2px;
+
+    margin:
+        0 auto 6px;
+
+    background: #34d399;
+
+    box-shadow:
+        0 0 8px #34d399;
+}
+
+
+.notification-text {
+
+    color: #6ee7b7;
+
+    font-size: 21px;
+
+    font-weight: 900;
+
+    letter-spacing: 3px;
+
+    text-shadow:
+        0 0 10px
+        rgba(52, 211, 153, 0.7);
+}
+
+
+.notification-sub {
+
+    margin-top: 4px;
+
+    color: #64748b;
+
+    font-size: 8px;
+
+    letter-spacing: 2px;
+}
+
+
+@keyframes foodNotification {
 
     0% {
+
         opacity: 0;
-        transform: translate(-50%, -10px);
+
+        transform:
+            translate(-50%, -50%)
+            scale(0.65);
+
     }
 
     20% {
+
         opacity: 1;
-        transform: translate(-50%, 0);
+
+        transform:
+            translate(-50%, -50%)
+            scale(1.08);
+
+    }
+
+    35% {
+
+        transform:
+            translate(-50%, -50%)
+            scale(1);
+
     }
 
     75% {
+
         opacity: 1;
-        transform: translate(-50%, 0);
+
+        transform:
+            translate(-50%, -60%)
+            scale(1);
+
     }
 
     100% {
+
         opacity: 0;
-        transform: translate(-50%, -5px);
+
+        transform:
+            translate(-50%, -75%)
+            scale(0.95);
+
     }
 
 }
 
 
-/* =========================
+
+/* ==================================================
    GAME OVER
-========================= */
+================================================== */
 
 #gameOver {
+
     position: absolute;
 
     inset: 0;
 
-    z-index: 50;
+    z-index: 100;
 
     display: none;
 
@@ -613,87 +926,145 @@ body {
 
     justify-content: center;
 
-    background: rgba(2, 6, 23, 0.78);
+    background:
+        rgba(2, 6, 23, 0.82);
 
-    backdrop-filter: blur(4px);
+    backdrop-filter:
+        blur(5px);
 }
 
 
 #gameOver.show {
+
     display: flex;
 }
 
 
 .game-over-box {
-    width: min(85%, 420px);
 
-    padding: 35px 25px;
+    width:
+        min(90%, 450px);
+
+    padding:
+        30px 25px;
 
     text-align: center;
 
-    border: 1px solid rgba(248, 113, 113, 0.5);
+    border:
+        1px solid
+        rgba(248, 113, 113, 0.5);
 
     background:
-        rgba(15, 23, 42, 0.95);
+        rgba(8, 15, 31, 0.96);
 
     box-shadow:
-        0 0 35px rgba(0, 0, 0, 0.5);
+        0 0 30px
+        rgba(248, 113, 113, 0.12);
+}
+
+
+.game-over-small {
+
+    color: #64748b;
+
+    font-size: 9px;
+
+    letter-spacing: 3px;
 }
 
 
 .game-over-title {
-    font-size: clamp(30px, 5vw, 48px);
 
-    font-weight: 900;
-
-    letter-spacing: 3px;
+    margin-top: 8px;
 
     color: #f87171;
 
+    font-size:
+        clamp(30px, 5vw, 50px);
+
+    font-weight: 900;
+
+    letter-spacing: 4px;
+
     text-shadow:
-        0 0 15px rgba(248, 113, 113, 0.5);
+        0 0 15px
+        rgba(248, 113, 113, 0.45);
+}
+
+
+.game-over-line {
+
+    width: 80px;
+
+    height: 2px;
+
+    margin:
+        12px auto 15px;
+
+    background: #f87171;
+
+    box-shadow:
+        0 0 10px
+        rgba(248, 113, 113, 0.5);
+}
+
+
+.final-score-label {
+
+    color: #64748b;
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
 }
 
 
 .final-score {
-    margin-top: 15px;
 
-    font-size: 18px;
+    margin-top: 5px;
 
-    color: #cbd5e1;
-}
-
-
-.final-score span {
     color: #38bdf8;
 
+    font-size: 35px;
+
     font-weight: 900;
+
+    text-shadow:
+        0 0 12px
+        rgba(56, 189, 248, 0.45);
 }
 
 
 .restart-text {
-    margin-top: 20px;
 
-    font-size: 10px;
-
-    letter-spacing: 1px;
+    margin-top: 12px;
 
     color: #64748b;
+
+    font-size: 9px;
+
+    letter-spacing: 1px;
 }
 
 
 #restartButton {
-    margin-top: 20px;
 
-    padding: 12px 22px;
+    margin-top: 18px;
 
-    border: 1px solid #38bdf8;
+    padding:
+        11px 22px;
 
-    background: #0f172a;
+    border:
+        1px solid #38bdf8;
+
+    background:
+        rgba(15, 23, 42, 0.8);
 
     color: #38bdf8;
 
     font-family: inherit;
+
+    font-size: 10px;
 
     font-weight: 800;
 
@@ -707,23 +1078,29 @@ body {
 
 
 #restartButton:hover {
+
     background: #38bdf8;
 
     color: #020617;
 
     box-shadow:
-        0 0 18px rgba(56, 189, 248, 0.5);
+        0 0 18px
+        rgba(56, 189, 248, 0.5);
 }
 
 
-/* =========================
+
+/* ==================================================
    JOYSTICK AREA
-========================= */
+================================================== */
 
 #joystickArea {
+
+    position: relative;
+
     width: 100%;
 
-    height: 125px;
+    height: 95px;
 
     display: flex;
 
@@ -737,25 +1114,44 @@ body {
 }
 
 
+.joystick-label {
+
+    position: absolute;
+
+    top: 1px;
+
+    color: #334155;
+
+    font-size: 7px;
+
+    letter-spacing: 3px;
+}
+
+
 #joystick {
+
     position: relative;
 
-    width: 105px;
-    height: 105px;
+    width: 78px;
+
+    height: 78px;
+
+    border:
+        1px solid
+        rgba(56, 189, 248, 0.45);
 
     border-radius: 50%;
-
-    border: 2px solid rgba(56, 189, 248, 0.55);
 
     background:
         radial-gradient(
             circle,
-            rgba(56, 189, 248, 0.12),
-            rgba(15, 23, 42, 0.85)
+            rgba(56, 189, 248, 0.08),
+            rgba(2, 6, 23, 0.9)
         );
 
     box-shadow:
-        0 0 20px rgba(56, 189, 248, 0.15);
+        0 0 18px
+        rgba(56, 189, 248, 0.12);
 
     touch-action: none;
 
@@ -763,31 +1159,52 @@ body {
 }
 
 
-#joystick::before {
-    content: "";
+.joystick-ring {
 
     position: absolute;
 
-    inset: 20px;
-
     border-radius: 50%;
 
-    border: 1px dashed rgba(148, 163, 184, 0.3);
+    pointer-events: none;
+}
+
+
+.ring-one {
+
+    inset: 10px;
+
+    border:
+        1px dashed
+        rgba(56, 189, 248, 0.18);
+}
+
+
+.ring-two {
+
+    inset: 21px;
+
+    border:
+        1px solid
+        rgba(56, 189, 248, 0.1);
 }
 
 
 #joystickStick {
+
     position: absolute;
 
     left: 50%;
+
     top: 50%;
 
-    width: 48px;
-    height: 48px;
+    width: 38px;
+
+    height: 38px;
 
     display: flex;
 
     align-items: center;
+
     justify-content: center;
 
     transform:
@@ -800,40 +1217,94 @@ body {
 
     color: #082f49;
 
-    font-size: 18px;
+    font-size: 14px;
 
     box-shadow:
-        0 0 18px rgba(56, 189, 248, 0.55);
+        0 0 16px
+        rgba(56, 189, 248, 0.5);
 
     pointer-events: none;
-
-    transition:
-        transform 0.05s linear;
 }
 
 
-/* =========================
+.joystick-direction {
+
+    position: absolute;
+
+    color: #334155;
+
+    font-size: 7px;
+
+    pointer-events: none;
+}
+
+
+.joystick-direction.up {
+
+    top: 4px;
+
+    left: 50%;
+
+    transform:
+        translateX(-50%);
+}
+
+
+.joystick-direction.down {
+
+    bottom: 4px;
+
+    left: 50%;
+
+    transform:
+        translateX(-50%);
+}
+
+
+.joystick-direction.left {
+
+    left: 4px;
+
+    top: 50%;
+
+    transform:
+        translateY(-50%);
+}
+
+
+.joystick-direction.right {
+
+    right: 4px;
+
+    top: 50%;
+
+    transform:
+        translateY(-50%);
+}
+
+
+
+/* ==================================================
    CONTROL INFO
-========================= */
+================================================== */
 
 .control-info {
+
+    min-height: 15px;
+
     display: flex;
 
     align-items: center;
 
     justify-content: center;
 
-    gap: 10px;
+    gap: 9px;
 
-    width: 100%;
+    color: #475569;
 
-    min-height: 18px;
+    font-size: 8px;
 
-    color: #64748b;
-
-    font-size: 9px;
-
-    letter-spacing: 1px;
+    letter-spacing: 1.5px;
 
     text-align: center;
 }
@@ -841,237 +1312,305 @@ body {
 
 .control-info span:first-child,
 .control-info span:nth-child(3) {
-    color: #94a3b8;
+
+    color: #64748b;
 
     font-weight: 700;
 }
 
 
-/* =========================
+.control-info .separator {
+
+    color: #1e293b;
+}
+
+
+
+/* ==================================================
    TABLET
-========================= */
+================================================== */
 
 @media (max-width: 900px) {
 
-    #gameArea {
-        width: min(
-            94vw,
-            calc((100vh - 205px) * 1.3333)
-        );
-    }
-
-
     .top-bar {
-        width: 94vw;
+
+        width: 96vw;
+
+        padding:
+            6px 10px;
+
     }
 
 
-    .game-title {
-        font-size: 18px;
+    #gameArea {
+
+        width: 96vw;
+    }
+
+
+    .stat-box {
+
+        min-width: 100px;
     }
 
 }
 
 
-/* =========================
+
+/* ==================================================
    MOBILE
-========================= */
+================================================== */
 
 @media (max-width: 600px) {
 
     #gameContainer {
+
         gap: 5px;
 
-        padding: 6px;
+        padding:
+            6px 6px 3px;
     }
 
 
     .top-bar {
-        min-height: 48px;
 
-        padding: 6px 8px;
+        width: 96vw;
 
-        gap: 6px;
+        min-height: 45px;
+
+        gap: 8px;
+
+        padding:
+            5px 7px;
     }
 
 
     .game-title {
-        font-size: 15px;
+
+        font-size: 14px;
 
         letter-spacing: 1px;
+
+        gap: 4px;
     }
 
 
     .game-stats {
+
         gap: 4px;
     }
 
 
-    .score-box,
-    .speed-box,
-    #musicButton {
+    .stat-box {
+
+        min-width: auto;
+
         height: 30px;
 
-        padding: 0 7px;
+        padding:
+            0 6px;
 
-        font-size: 9px;
-
-        letter-spacing: 0;
+        font-size: 8px;
     }
 
 
-    .score-box span,
-    .speed-box span {
-        font-size: 11px;
+    .stat-value {
+
+        font-size: 10px;
     }
 
 
     #musicButton {
-        font-size: 0;
+
+        min-width: 31px;
+
+        width: 31px;
+
+        height: 30px;
+
+        padding: 0;
+
     }
 
 
-    #musicButton::before {
-        content: "🔊";
+    #musicText {
 
-        font-size: 14px;
+        display: none;
     }
 
 
-    #musicButton.off::before {
-        content: "🔇";
-    }
+    #musicIcon {
 
-
-    #gameArea {
-        width: 94vw;
-
-        max-width: 600px;
-
-        aspect-ratio: 4 / 3;
-    }
-
-
-    #joystickArea {
-        height: 105px;
-    }
-
-
-    #joystick {
-        width: 88px;
-        height: 88px;
-    }
-
-
-    #joystickStick {
-        width: 42px;
-        height: 42px;
-
-        font-size: 15px;
-    }
-
-
-    .control-info {
-        font-size: 8px;
-
-        gap: 6px;
-    }
-
-}
-
-
-/* =========================
-   SMALL MOBILE
-========================= */
-
-@media (max-width: 380px) {
-
-    .game-title {
         font-size: 13px;
     }
 
 
-    .score-box,
-    .speed-box {
-        padding: 0 5px;
-
-        font-size: 8px;
-    }
-
-
     #gameArea {
-        width: 95vw;
+
+        width: 96vw;
+
+        height:
+            min(
+                calc(100vh - 175px),
+                550px
+            );
+
+        min-height: 220px;
     }
 
 
     #joystickArea {
-        height: 90px;
+
+        height: 85px;
     }
 
 
     #joystick {
-        width: 76px;
-        height: 76px;
+
+        width: 70px;
+
+        height: 70px;
     }
 
 
     #joystickStick {
-        width: 36px;
-        height: 36px;
+
+        width: 35px;
+
+        height: 35px;
     }
 
 
     .control-info {
+
         font-size: 7px;
+
+        gap: 5px;
     }
 
 }
 
 
-/* =========================
-   SHORT SCREEN / LANDSCAPE
-========================= */
 
-@media (max-height: 650px) {
+/* ==================================================
+   SMALL MOBILE
+================================================== */
 
-    #gameContainer {
-        gap: 4px;
+@media (max-width: 380px) {
 
-        padding: 5px;
+    .game-title {
+
+        font-size: 12px;
     }
 
 
-    .top-bar {
-        min-height: 42px;
+    .stat-box {
+
+        padding:
+            0 4px;
+
+        font-size: 7px;
     }
 
 
     #gameArea {
-        width: min(
-            90vw,
-            calc((100vh - 150px) * 1.3333)
-        );
+
+        height:
+            calc(100vh - 170px);
     }
 
 
     #joystickArea {
+
         height: 75px;
     }
 
 
     #joystick {
-        width: 65px;
-        height: 65px;
+
+        width: 62px;
+
+        height: 62px;
     }
 
 
     #joystickStick {
-        width: 34px;
-        height: 34px;
+
+        width: 31px;
+
+        height: 31px;
     }
 
 
     .control-info {
+
+        font-size: 6px;
+    }
+
+}
+
+
+
+/* ==================================================
+   SHORT DESKTOP / LANDSCAPE
+================================================== */
+
+@media (max-height: 650px) {
+
+    #gameContainer {
+
+        gap: 4px;
+
+        padding:
+            6px 8px 2px;
+    }
+
+
+    .top-bar {
+
+        min-height: 45px;
+    }
+
+
+    #gameArea {
+
+        height:
+            calc(100vh - 155px);
+
+        min-height: 210px;
+    }
+
+
+    #joystickArea {
+
+        height: 65px;
+    }
+
+
+    #joystick {
+
+        width: 55px;
+
+        height: 55px;
+    }
+
+
+    #joystickStick {
+
+        width: 29px;
+
+        height: 29px;
+    }
+
+
+    .joystick-label {
+
+        display: none;
+    }
+
+
+    .control-info {
+
         display: none;
     }
 
