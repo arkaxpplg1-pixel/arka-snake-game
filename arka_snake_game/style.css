@@ -1,100 +1,69 @@
-/* ==================================================
-   RESET
-================================================== */
+/* ==================== RESET ==================== */
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-
-    -webkit-tap-highlight-color: transparent;
 }
-
 
 html,
 body {
     width: 100%;
     height: 100%;
+    overflow: hidden;
 }
-
 
 body {
+    background: #050814;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
 
-    overflow: hidden;
+    user-select: none;
+    -webkit-user-select: none;
 
-    background:
-        radial-gradient(
-            circle at center,
-            #101827 0%,
-            #070b16 50%,
-            #02040a 100%
-        );
-
-    color: #ffffff;
-
-    font-family:
-        "Segoe UI",
-        Arial,
-        sans-serif;
+    touch-action: none;
 }
 
 
-
-/* ==================================================
-   SPLASH SCREEN
-================================================== */
+/* ==================== SPLASH SCREEN ==================== */
 
 #splashScreen {
-
     position: fixed;
-
     inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background: #050814;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     z-index: 9999;
 
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
     overflow: hidden;
-
-    background:
-        radial-gradient(
-            circle at center,
-            #13213c 0%,
-            #080e1d 50%,
-            #02050c 100%
-        );
 }
 
-
 .splash-grid {
-
     position: absolute;
-
     inset: 0;
-
-    opacity: 0.25;
 
     background-image:
         linear-gradient(
-            rgba(56, 189, 248, 0.12) 1px,
+            rgba(56, 189, 248, 0.08) 1px,
             transparent 1px
         ),
         linear-gradient(
             90deg,
-            rgba(56, 189, 248, 0.12) 1px,
+            rgba(56, 189, 248, 0.08) 1px,
             transparent 1px
         );
 
     background-size: 40px 40px;
 
-    animation:
-        gridMove 8s linear infinite;
+    animation: gridMove 5s linear infinite;
 }
-
 
 @keyframes gridMove {
 
@@ -105,1513 +74,746 @@ body {
     to {
         transform: translateY(40px);
     }
-
 }
-
 
 .scan-line {
-
     position: absolute;
 
-    left: 0;
-
     width: 100%;
-
     height: 2px;
 
-    background: #38bdf8;
+    background: rgba(56, 189, 248, 0.6);
 
     box-shadow:
-        0 0 10px #38bdf8,
-        0 0 25px #38bdf8;
+        0 0 20px rgba(56, 189, 248, 0.8);
 
-    opacity: 0.7;
-
-    animation:
-        scanMove 3s linear infinite;
+    animation: scan 3s linear infinite;
 }
 
+@keyframes scan {
 
-@keyframes scanMove {
-
-    0% {
-        top: -5%;
+    from {
+        top: 0;
     }
 
-    100% {
-        top: 105%;
+    to {
+        top: 100%;
     }
-
 }
-
 
 .splash-content {
-
     position: relative;
 
-    z-index: 2;
-
-    width: min(90vw, 650px);
+    width: min(90%, 800px);
 
     text-align: center;
+
+    z-index: 2;
 }
 
-
 .splash-content h1 {
+    font-size: clamp(30px, 6vw, 70px);
 
-    margin-top: 25px;
+    letter-spacing: 8px;
 
-    font-size:
-        clamp(28px, 5vw, 48px);
+    margin: 20px 0 12px;
 
-    font-weight: 900;
+    text-shadow:
+        0 0 10px rgba(56, 189, 248, 0.9),
+        0 0 30px rgba(56, 189, 248, 0.6);
+}
 
-    letter-spacing: 4px;
+.loading-text {
+    font-size: clamp(12px, 2vw, 18px);
+
+    letter-spacing: 3px;
 
     color: #38bdf8;
 
-    text-shadow:
-        0 0 8px rgba(56, 189, 248, 0.9),
-        0 0 25px rgba(56, 189, 248, 0.5);
+    margin-bottom: 20px;
 }
-
-
-.subtitle {
-
-    margin-top: 10px;
-
-    color: #94a3b8;
-
-    font-size: 12px;
-
-    letter-spacing: 4px;
-}
-
-
-
-/* ==================================================
-   SNAKE LOGO
-================================================== */
-
-.snake-logo {
-
-    position: relative;
-
-    width: 170px;
-
-    height: 90px;
-
-    margin: auto;
-}
-
-
-.logo-head {
-
-    position: absolute;
-
-    right: 5px;
-
-    top: 8px;
-
-    width: 55px;
-
-    height: 55px;
-
-    background: #22c55e;
-
-    box-shadow:
-        0 0 15px rgba(34, 197, 94, 0.8);
-
-    transform: rotate(45deg);
-}
-
-
-.logo-eye {
-
-    position: absolute;
-
-    width: 8px;
-
-    height: 8px;
-
-    border-radius: 50%;
-
-    background: #ffffff;
-}
-
-
-.logo-eye.left {
-
-    top: 10px;
-
-    left: 11px;
-}
-
-
-.logo-eye.right {
-
-    right: 10px;
-
-    bottom: 10px;
-}
-
-
-.logo-body {
-
-    position: absolute;
-
-    width: 45px;
-
-    height: 45px;
-
-    background: #16a34a;
-
-    box-shadow:
-        0 0 12px rgba(34, 197, 94, 0.6);
-}
-
-
-.body-1 {
-
-    right: 55px;
-
-    top: 27px;
-}
-
-
-.body-2 {
-
-    right: 93px;
-
-    top: 45px;
-}
-
-
-.body-3 {
-
-    right: 125px;
-
-    top: 20px;
-}
-
-
-
-/* ==================================================
-   LOADING
-================================================== */
-
-.loading-box {
-
-    width: 100%;
-
-    margin-top: 35px;
-}
-
 
 .loading-bar {
-
-    width: 100%;
-
+    width: min(600px, 80%);
     height: 8px;
 
+    margin: auto;
+
+    background: rgba(255, 255, 255, 0.08);
+
+    border: 1px solid rgba(56, 189, 248, 0.4);
+
     overflow: hidden;
-
-    border:
-        1px solid
-        rgba(56, 189, 248, 0.3);
-
-    background: #0f172a;
 }
 
-
 #loadingProgress {
-
     width: 0%;
-
     height: 100%;
 
     background: #38bdf8;
 
     box-shadow:
-        0 0 12px #38bdf8;
-
-    transition:
-        width 0.15s linear;
+        0 0 15px #38bdf8;
 }
 
+.loading-percent {
+    margin-top: 10px;
 
-.loading-info {
+    font-size: 14px;
 
-    display: flex;
+    color: #94a3b8;
+}
 
-    align-items: center;
-
-    justify-content: space-between;
-
-    margin-top: 8px;
+.skip-text {
+    margin-top: 35px;
 
     color: #64748b;
 
-    font-size: 11px;
+    font-size: 12px;
 
     letter-spacing: 2px;
 }
 
 
-.skip-text {
+/* ==================== SNAKE LOGO ==================== */
 
-    margin-top: 25px;
+.snake-logo {
+    width: 100px;
+    height: 100px;
 
-    color: #475569;
+    margin: auto;
 
-    font-size: 10px;
+    position: relative;
+}
 
-    letter-spacing: 2px;
+.logo-body {
+    position: absolute;
 
-    animation:
-        blink 1.2s infinite;
+    width: 55px;
+    height: 25px;
+
+    left: 10px;
+    top: 50px;
+
+    background: #38bdf8;
+
+    box-shadow:
+        0 0 15px #38bdf8,
+        0 0 30px rgba(56, 189, 248, 0.5);
+}
+
+.logo-head {
+    position: absolute;
+
+    width: 35px;
+    height: 35px;
+
+    right: 5px;
+    top: 45px;
+
+    background: #0284c7;
+
+    box-shadow:
+        0 0 15px #0284c7,
+        0 0 30px rgba(2, 132, 199, 0.6);
+}
+
+.logo-eye {
+    position: absolute;
+
+    width: 7px;
+    height: 7px;
+
+    background: white;
+
+    border-radius: 50%;
+
+    top: 7px;
+}
+
+.logo-eye.left {
+    left: 7px;
+}
+
+.logo-eye.right {
+    right: 7px;
 }
 
 
-@keyframes blink {
-
-    50% {
-        opacity: 0.3;
-    }
-
-}
-
-
-
-/* ==================================================
-   GAME CONTAINER
-================================================== */
+/* ==================== GAME CONTAINER ==================== */
 
 #gameContainer {
-
     width: 100%;
+    height: 100dvh;
 
-    height: 100vh;
-
-    display: none;
+    display: flex;
 
     flex-direction: column;
 
     align-items: center;
 
-    justify-content: flex-start;
+    background: #050814;
 
-    gap: 7px;
-
-    padding:
-        10px 10px 5px;
-
-    overflow: hidden;
+    padding: 10px;
 }
 
 
-
-/* ==================================================
-   TOP BAR
-================================================== */
+/* ==================== TOP BAR ==================== */
 
 .top-bar {
-
-    width:
-        min(98vw, 1400px);
-
-    min-height: 52px;
+    width: min(94vw, 1200px);
 
     display: flex;
-
-    align-items: center;
 
     justify-content: space-between;
 
-    gap: 20px;
+    align-items: center;
 
-    padding:
-        6px 14px;
-
-    border:
-        1px solid
-        rgba(56, 189, 248, 0.28);
-
-    background:
-        linear-gradient(
-            90deg,
-            rgba(8, 15, 31, 0.96),
-            rgba(13, 23, 42, 0.92),
-            rgba(8, 15, 31, 0.96)
-        );
-
-    box-shadow:
-        0 0 25px rgba(0, 0, 0, 0.35),
-        inset 0 -1px 0 rgba(56, 189, 248, 0.08);
+    padding: 8px 0;
 }
-
 
 .game-title {
+    font-size: clamp(16px, 2.5vw, 28px);
 
-    display: flex;
+    font-weight: bold;
 
-    align-items: center;
+    letter-spacing: 3px;
 
-    gap: 7px;
-
-    white-space: nowrap;
-
-    font-size:
-        clamp(18px, 2vw, 25px);
-
-    font-weight: 900;
-
-    letter-spacing: 2px;
-}
-
-
-.title-main {
-
-    color: #f8fafc;
+    color: #38bdf8;
 
     text-shadow:
-        0 0 8px rgba(255, 255, 255, 0.15);
+        0 0 10px rgba(56, 189, 248, 0.7);
 }
 
-
-.title-accent {
-
-    color: #34d399;
-
-    text-shadow:
-        0 0 10px rgba(52, 211, 153, 0.45);
-}
-
-
-.game-stats {
-
+.game-info {
     display: flex;
 
-    align-items: center;
-
-    justify-content: flex-end;
-
-    gap: 8px;
+    gap: 10px;
 }
 
+.info-box {
+    min-width: 85px;
 
-.stat-box {
+    padding: 7px 12px;
 
-    height: 35px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    min-width: 115px;
-
-    padding:
-        0 12px;
-
-    border:
-        1px solid
-        rgba(56, 189, 248, 0.2);
-
-    background:
-        rgba(2, 6, 23, 0.7);
-
-    font-size: 11px;
-
-    letter-spacing: 1px;
-}
-
-
-.stat-label {
-
-    color: #64748b;
-
-    font-weight: 700;
-}
-
-
-.stat-colon {
-
-    margin:
-        0 5px;
-
-    color: #334155;
-}
-
-
-.stat-value {
-
-    color: #f8fafc;
-
-    font-size: 14px;
-
-    font-weight: 900;
-
-    text-shadow:
-        0 0 8px rgba(56, 189, 248, 0.4);
-}
-
-
-
-/* ==================================================
-   MUSIC BUTTON
-================================================== */
-
-#musicButton {
-
-    height: 35px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    gap: 6px;
-
-    min-width: 105px;
-
-    padding:
-        0 12px;
-
-    border:
-        1px solid
-        rgba(52, 211, 153, 0.5);
-
-    background:
-        rgba(6, 24, 22, 0.7);
-
-    color: #6ee7b7;
-
-    font-family: inherit;
+    text-align: center;
 
     font-size: 10px;
 
-    font-weight: 800;
-
     letter-spacing: 1px;
 
-    cursor: pointer;
+    border: 1px solid rgba(56, 189, 248, 0.35);
 
-    transition:
-        0.2s ease;
+    background: rgba(15, 23, 42, 0.8);
 
-    box-shadow:
-        inset 0 0 10px
-        rgba(52, 211, 153, 0.04);
+    color: #94a3b8;
+}
+
+.info-box span {
+    display: block;
+
+    margin-top: 3px;
+
+    font-size: 17px;
+
+    font-weight: bold;
+
+    color: white;
 }
 
 
-#musicButton:hover {
-
-    background:
-        rgba(52, 211, 153, 0.12);
-
-    border-color:
-        #34d399;
-
-    box-shadow:
-        0 0 15px
-        rgba(52, 211, 153, 0.2);
-}
-
-
-#musicButton.off {
-
-    border-color:
-        rgba(100, 116, 139, 0.5);
-
-    background:
-        rgba(15, 23, 42, 0.8);
-
-    color: #64748b;
-}
-
-
-#musicButton.off:hover {
-
-    border-color:
-        #94a3b8;
-
-    color: #cbd5e1;
-}
-
-
-
-/* ==================================================
-   GAME AREA
-================================================== */
+/* ==================== GAME AREA ==================== */
 
 #gameArea {
-
     position: relative;
 
-    width:
-        min(98vw, 1400px);
+    width: min(94vw, 1200px);
 
-    /*
-       Tinggi otomatis mengikuti
-       ukuran desktop pengguna.
-    */
+    aspect-ratio: 4 / 3;
 
-    height:
-        min(
-            calc(100vh - 190px),
-            720px
-        );
+    max-height: calc(100dvh - 280px);
 
-    min-height: 260px;
+    display: flex;
 
-    overflow: hidden;
+    justify-content: center;
 
-    border:
-        2px solid
-        rgba(56, 189, 248, 0.38);
+    align-items: center;
 
-    background: #020617;
+    border: 2px solid rgba(56, 189, 248, 0.35);
 
     box-shadow:
-        0 0 25px rgba(0, 0, 0, 0.5),
-        inset 0 0 25px rgba(0, 0, 0, 0.4);
+        0 0 20px rgba(56, 189, 248, 0.12),
+        inset 0 0 20px rgba(56, 189, 248, 0.04);
+
+    overflow: hidden;
 }
-
-
-#gameArea::before {
-
-    content: "";
-
-    position: absolute;
-
-    inset: 0;
-
-    z-index: 2;
-
-    pointer-events: none;
-
-    border:
-        1px solid
-        rgba(255, 255, 255, 0.025);
-}
-
 
 #gameCanvas {
+    width: 100%;
+    height: 100%;
 
     display: block;
 
-    width: 100%;
-
-    height: 100%;
+    background: #1e1e2d;
 
     touch-action: none;
 }
 
 
-
-/* ==================================================
-   GAME SCAN LINE
-================================================== */
-
-.game-scan-line {
-
-    position: absolute;
-
-    left: 0;
-
-    top: -10px;
-
-    width: 100%;
-
-    height: 1px;
-
-    z-index: 3;
-
-    pointer-events: none;
-
-    background:
-        rgba(56, 189, 248, 0.22);
-
-    box-shadow:
-        0 0 8px
-        rgba(56, 189, 248, 0.35);
-
-    animation:
-        gameScan 5s linear infinite;
-}
-
-
-@keyframes gameScan {
-
-    0% {
-        top: 0%;
-    }
-
-    100% {
-        top: 100%;
-    }
-
-}
-
-
-
-/* ==================================================
-   FOOD NOTIFICATION
-================================================== */
+/* ==================== NOTIFICATION ==================== */
 
 #notification {
-
     position: absolute;
 
-    top: 50%;
-
     left: 50%;
+    top: 35%;
 
-    z-index: 20;
+    transform: translate(-50%, -50%);
 
-    min-width: 190px;
+    font-size: clamp(25px, 5vw, 55px);
 
-    padding:
-        10px 20px;
+    font-weight: bold;
 
-    text-align: center;
+    letter-spacing: 5px;
 
     opacity: 0;
 
     pointer-events: none;
 
-    transform:
-        translate(-50%, -50%)
-        scale(0.7);
-
-    border:
-        1px solid
-        rgba(52, 211, 153, 0.65);
-
-    background:
-        rgba(2, 15, 20, 0.82);
-
-    box-shadow:
-        0 0 20px
-        rgba(52, 211, 153, 0.22);
-
-    backdrop-filter: blur(4px);
-}
-
-
-#notification.show {
-
-    animation:
-        foodNotification 0.85s ease forwards;
-}
-
-
-.notification-line {
-
-    width: 35px;
-
-    height: 2px;
-
-    margin:
-        0 auto 6px;
-
-    background: #34d399;
-
-    box-shadow:
-        0 0 8px #34d399;
-}
-
-
-.notification-text {
-
-    color: #6ee7b7;
-
-    font-size: 21px;
-
-    font-weight: 900;
-
-    letter-spacing: 3px;
-
     text-shadow:
-        0 0 10px
-        rgba(52, 211, 153, 0.7);
+        0 0 10px rgba(255, 255, 255, 0.8),
+        0 0 30px rgba(56, 189, 248, 0.8);
+
+    transition: opacity 0.2s;
 }
 
 
-.notification-sub {
-
-    margin-top: 4px;
-
-    color: #64748b;
-
-    font-size: 8px;
-
-    letter-spacing: 2px;
-}
-
-
-@keyframes foodNotification {
-
-    0% {
-
-        opacity: 0;
-
-        transform:
-            translate(-50%, -50%)
-            scale(0.65);
-
-    }
-
-    20% {
-
-        opacity: 1;
-
-        transform:
-            translate(-50%, -50%)
-            scale(1.08);
-
-    }
-
-    35% {
-
-        transform:
-            translate(-50%, -50%)
-            scale(1);
-
-    }
-
-    75% {
-
-        opacity: 1;
-
-        transform:
-            translate(-50%, -60%)
-            scale(1);
-
-    }
-
-    100% {
-
-        opacity: 0;
-
-        transform:
-            translate(-50%, -75%)
-            scale(0.95);
-
-    }
-
-}
-
-
-
-/* ==================================================
-   GAME OVER
-================================================== */
+/* ==================== GAME OVER ==================== */
 
 #gameOver {
-
     position: absolute;
 
     inset: 0;
 
-    z-index: 100;
-
     display: none;
-
-    align-items: center;
 
     justify-content: center;
 
-    background:
-        rgba(2, 6, 23, 0.82);
+    align-items: center;
 
-    backdrop-filter:
-        blur(5px);
+    background: rgba(5, 8, 20, 0.78);
+
+    backdrop-filter: blur(4px);
 }
-
-
-#gameOver.show {
-
-    display: flex;
-}
-
 
 .game-over-box {
+    width: min(90%, 450px);
 
-    width:
-        min(90%, 450px);
-
-    padding:
-        30px 25px;
+    padding: 35px;
 
     text-align: center;
 
-    border:
-        1px solid
-        rgba(248, 113, 113, 0.5);
+    border: 1px solid rgba(56, 189, 248, 0.5);
 
-    background:
-        rgba(8, 15, 31, 0.96);
+    background: rgba(15, 23, 42, 0.95);
 
     box-shadow:
-        0 0 30px
-        rgba(248, 113, 113, 0.12);
+        0 0 30px rgba(56, 189, 248, 0.2);
 }
 
+.game-over-box h2 {
+    font-size: clamp(28px, 6vw, 50px);
 
-.game-over-small {
+    color: #ef4444;
 
-    color: #64748b;
+    letter-spacing: 5px;
 
-    font-size: 9px;
-
-    letter-spacing: 3px;
+    margin-bottom: 15px;
 }
 
+.game-over-box p {
+    color: #94a3b8;
 
-.game-over-title {
-
-    margin-top: 8px;
-
-    color: #f87171;
-
-    font-size:
-        clamp(30px, 5vw, 50px);
-
-    font-weight: 900;
-
-    letter-spacing: 4px;
-
-    text-shadow:
-        0 0 15px
-        rgba(248, 113, 113, 0.45);
+    margin-bottom: 20px;
 }
 
+.game-over-box p span {
+    color: white;
 
-.game-over-line {
-
-    width: 80px;
-
-    height: 2px;
-
-    margin:
-        12px auto 15px;
-
-    background: #f87171;
-
-    box-shadow:
-        0 0 10px
-        rgba(248, 113, 113, 0.5);
+    font-weight: bold;
 }
-
-
-.final-score-label {
-
-    color: #64748b;
-
-    font-size: 9px;
-
-    letter-spacing: 2px;
-}
-
-
-.final-score {
-
-    margin-top: 5px;
-
-    color: #38bdf8;
-
-    font-size: 35px;
-
-    font-weight: 900;
-
-    text-shadow:
-        0 0 12px
-        rgba(56, 189, 248, 0.45);
-}
-
-
-.restart-text {
-
-    margin-top: 12px;
-
-    color: #64748b;
-
-    font-size: 9px;
-
-    letter-spacing: 1px;
-}
-
 
 #restartButton {
+    border: none;
 
-    margin-top: 18px;
+    padding: 13px 25px;
 
-    padding:
-        11px 22px;
+    background: #0ea5e9;
 
-    border:
-        1px solid #38bdf8;
+    color: white;
 
-    background:
-        rgba(15, 23, 42, 0.8);
-
-    color: #38bdf8;
-
-    font-family: inherit;
-
-    font-size: 10px;
-
-    font-weight: 800;
-
-    letter-spacing: 1px;
+    font-weight: bold;
 
     cursor: pointer;
 
-    transition:
-        0.2s ease;
+    transition: 0.2s;
 }
-
 
 #restartButton:hover {
+    background: #0284c7;
 
-    background: #38bdf8;
+    transform: scale(1.03);
+}
 
-    color: #020617;
+.restart-info {
+    margin-top: 15px;
 
-    box-shadow:
-        0 0 18px
-        rgba(56, 189, 248, 0.5);
+    font-size: 11px;
+
+    color: #64748b;
+
+    letter-spacing: 1px;
 }
 
 
+/* ==================== JOYSTICK ==================== */
 
-/* ==================================================
-   JOYSTICK AREA
-================================================== */
-
-#joystickArea {
-
-    position: relative;
+#touchControls {
+    display: flex;
 
     width: 100%;
 
-    height: 95px;
-
-    display: flex;
+    justify-content: center;
 
     align-items: center;
 
+    margin-top: 8px;
+
+    touch-action: none;
+}
+
+#joystick {
+    width: 130px;
+    height: 130px;
+
+    display: flex;
+
     justify-content: center;
 
-    flex-shrink: 0;
+    align-items: center;
+
+    touch-action: none;
+}
+
+#joystickBase {
+    position: relative;
+
+    width: 115px;
+    height: 115px;
+
+    border-radius: 50%;
+
+    border: 2px solid rgba(56, 189, 248, 0.7);
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(56, 189, 248, 0.16),
+            rgba(56, 189, 248, 0.04)
+        );
+
+    box-shadow:
+        0 0 15px rgba(56, 189, 248, 0.3),
+        inset 0 0 25px rgba(56, 189, 248, 0.1);
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
 
     touch-action: none;
 }
 
 
-.joystick-label {
+/* ==================== JOYSTICK ARAH ==================== */
 
+.joystick-direction {
     position: absolute;
 
-    top: 1px;
+    color: rgba(56, 189, 248, 0.45);
 
-    color: #334155;
+    font-size: 12px;
 
-    font-size: 7px;
+    pointer-events: none;
+}
 
-    letter-spacing: 3px;
+.joystick-direction.up {
+    top: 9px;
+}
+
+.joystick-direction.down {
+    bottom: 9px;
+}
+
+.joystick-direction.left {
+    left: 9px;
+}
+
+.joystick-direction.right {
+    right: 9px;
 }
 
 
-#joystick {
+/* ==================== JOYSTICK KNOB ==================== */
 
-    position: relative;
+#joystickKnob {
+    position: absolute;
 
-    width: 78px;
+    width: 50px;
+    height: 50px;
 
-    height: 78px;
+    left: 50%;
+    top: 50%;
 
-    border:
-        1px solid
-        rgba(56, 189, 248, 0.45);
+    transform: translate(-50%, -50%);
 
     border-radius: 50%;
 
     background:
         radial-gradient(
-            circle,
-            rgba(56, 189, 248, 0.08),
-            rgba(2, 6, 23, 0.9)
+            circle at 35% 30%,
+            #7dd3fc,
+            #0ea5e9 55%,
+            #0284c7
         );
 
-    box-shadow:
-        0 0 18px
-        rgba(56, 189, 248, 0.12);
-
-    touch-action: none;
-
-    user-select: none;
-}
-
-
-.joystick-ring {
-
-    position: absolute;
-
-    border-radius: 50%;
-
-    pointer-events: none;
-}
-
-
-.ring-one {
-
-    inset: 10px;
-
-    border:
-        1px dashed
-        rgba(56, 189, 248, 0.18);
-}
-
-
-.ring-two {
-
-    inset: 21px;
-
-    border:
-        1px solid
-        rgba(56, 189, 248, 0.1);
-}
-
-
-#joystickStick {
-
-    position: absolute;
-
-    left: 50%;
-
-    top: 50%;
-
-    width: 38px;
-
-    height: 38px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    transform:
-        translate(-50%, -50%);
-
-    border-radius: 50%;
-
-    background:
-        #38bdf8;
-
-    color: #082f49;
-
-    font-size: 14px;
+    border: 2px solid rgba(255, 255, 255, 0.75);
 
     box-shadow:
-        0 0 16px
-        rgba(56, 189, 248, 0.5);
+        0 0 15px rgba(56, 189, 248, 0.8),
+        0 0 30px rgba(56, 189, 248, 0.3);
 
     pointer-events: none;
+
+    transition: transform 0.06s ease;
 }
 
 
-.joystick-direction {
-
-    position: absolute;
-
-    color: #334155;
-
-    font-size: 7px;
-
-    pointer-events: none;
-}
-
-
-.joystick-direction.up {
-
-    top: 4px;
-
-    left: 50%;
-
-    transform:
-        translateX(-50%);
-}
-
-
-.joystick-direction.down {
-
-    bottom: 4px;
-
-    left: 50%;
-
-    transform:
-        translateX(-50%);
-}
-
-
-.joystick-direction.left {
-
-    left: 4px;
-
-    top: 50%;
-
-    transform:
-        translateY(-50%);
-}
-
-
-.joystick-direction.right {
-
-    right: 4px;
-
-    top: 50%;
-
-    transform:
-        translateY(-50%);
-}
-
-
-
-/* ==================================================
-   CONTROL INFO
-================================================== */
+/* ==================== CONTROL INFO ==================== */
 
 .control-info {
+    width: min(94vw, 1200px);
 
-    min-height: 15px;
+    padding-top: 5px;
 
     display: flex;
 
-    align-items: center;
-
     justify-content: center;
 
-    gap: 9px;
+    align-items: center;
 
-    color: #475569;
+    gap: 10px;
 
-    font-size: 8px;
+    color: #64748b;
 
-    letter-spacing: 1.5px;
+    font-size: 11px;
+
+    letter-spacing: 1px;
 
     text-align: center;
 }
 
-
-.control-info span:first-child,
-.control-info span:nth-child(3) {
-
-    color: #64748b;
-
-    font-weight: 700;
+.mobile-control {
+    display: none;
 }
 
 
-.control-info .separator {
-
-    color: #1e293b;
-}
-
-
-
-/* ==================================================
-   TABLET
-================================================== */
+/* ==================== TABLET ==================== */
 
 @media (max-width: 900px) {
 
-    .top-bar {
-
-        width: 96vw;
-
-        padding:
-            6px 10px;
-
-    }
-
-
     #gameArea {
-
-        width: 96vw;
+        width: 94vw;
     }
 
-
-    .stat-box {
-
-        min-width: 100px;
+    .top-bar {
+        width: 94vw;
     }
 
+    .control-info {
+        width: 94vw;
+    }
 }
 
 
-
-/* ==================================================
-   MOBILE
-================================================== */
+/* ==================== HP ==================== */
 
 @media (max-width: 600px) {
 
     #gameContainer {
-
-        gap: 5px;
-
-        padding:
-            6px 6px 3px;
+        padding: 6px;
     }
-
 
     .top-bar {
-
         width: 96vw;
 
-        min-height: 45px;
-
-        gap: 8px;
-
-        padding:
-            5px 7px;
+        padding: 4px 0;
     }
-
 
     .game-title {
+        font-size: 15px;
 
-        font-size: 14px;
-
-        letter-spacing: 1px;
-
-        gap: 4px;
+        letter-spacing: 2px;
     }
 
+    .info-box {
+        min-width: 62px;
 
-    .game-stats {
-
-        gap: 4px;
-    }
-
-
-    .stat-box {
-
-        min-width: auto;
-
-        height: 30px;
-
-        padding:
-            0 6px;
+        padding: 5px 8px;
 
         font-size: 8px;
     }
 
-
-    .stat-value {
-
-        font-size: 10px;
+    .info-box span {
+        font-size: 14px;
     }
 
+    #gameArea {
+        width: 96vw;
 
-    #musicButton {
+        max-height: calc(100dvh - 245px);
 
-        min-width: 31px;
-
-        width: 31px;
-
-        height: 30px;
-
-        padding: 0;
-
+        aspect-ratio: 4 / 3;
     }
 
+    #touchControls {
+        display: flex;
 
-    #musicText {
+        margin-top: 5px;
+    }
 
+    #joystick {
+        width: 125px;
+        height: 125px;
+    }
+
+    #joystickBase {
+        width: 108px;
+        height: 108px;
+    }
+
+    #joystickKnob {
+        width: 46px;
+        height: 46px;
+    }
+
+    .control-info {
+        width: 96vw;
+
+        font-size: 8px;
+
+        padding-top: 2px;
+
+        gap: 6px;
+    }
+
+    .desktop-control {
         display: none;
     }
 
-
-    #musicIcon {
-
-        font-size: 13px;
+    .mobile-control {
+        display: inline;
     }
-
-
-    #gameArea {
-
-        width: 96vw;
-
-        height:
-            min(
-                calc(100vh - 175px),
-                550px
-            );
-
-        min-height: 220px;
-    }
-
-
-    #joystickArea {
-
-        height: 85px;
-    }
-
-
-    #joystick {
-
-        width: 70px;
-
-        height: 70px;
-    }
-
-
-    #joystickStick {
-
-        width: 35px;
-
-        height: 35px;
-    }
-
-
-    .control-info {
-
-        font-size: 7px;
-
-        gap: 5px;
-    }
-
 }
 
 
-
-/* ==================================================
-   SMALL MOBILE
-================================================== */
+/* ==================== HP KECIL ==================== */
 
 @media (max-width: 380px) {
 
     .game-title {
-
         font-size: 12px;
     }
 
-
-    .stat-box {
-
-        padding:
-            0 4px;
-
-        font-size: 7px;
+    .info-box {
+        min-width: 55px;
     }
-
 
     #gameArea {
-
-        height:
-            calc(100vh - 170px);
+        max-height: calc(100dvh - 220px);
     }
-
-
-    #joystickArea {
-
-        height: 75px;
-    }
-
 
     #joystick {
-
-        width: 62px;
-
-        height: 62px;
+        width: 105px;
+        height: 105px;
     }
 
-
-    #joystickStick {
-
-        width: 31px;
-
-        height: 31px;
+    #joystickBase {
+        width: 90px;
+        height: 90px;
     }
 
+    #joystickKnob {
+        width: 40px;
+        height: 40px;
+    }
 
     .control-info {
-
-        font-size: 6px;
+        font-size: 7px;
     }
-
 }
 
 
+/* ==================== LANDSCAPE HP ==================== */
 
-/* ==================================================
-   SHORT DESKTOP / LANDSCAPE
-================================================== */
-
-@media (max-height: 650px) {
+@media (max-width: 900px) and (orientation: landscape) {
 
     #gameContainer {
-
-        gap: 4px;
-
-        padding:
-            6px 8px 2px;
+        padding: 4px;
     }
-
 
     .top-bar {
-
-        min-height: 45px;
+        padding: 2px 0;
     }
-
 
     #gameArea {
+        width: min(80vw, 900px);
 
-        height:
-            calc(100vh - 155px);
-
-        min-height: 210px;
+        max-height: calc(100dvh - 110px);
     }
 
+    #touchControls {
+        position: absolute;
 
-    #joystickArea {
+        right: 15px;
+        bottom: 15px;
 
-        height: 65px;
+        width: auto;
+
+        margin: 0;
     }
-
 
     #joystick {
-
-        width: 55px;
-
-        height: 55px;
+        width: 100px;
+        height: 100px;
     }
 
-
-    #joystickStick {
-
-        width: 29px;
-
-        height: 29px;
+    #joystickBase {
+        width: 85px;
+        height: 85px;
     }
 
-
-    .joystick-label {
-
-        display: none;
+    #joystickKnob {
+        width: 38px;
+        height: 38px;
     }
-
 
     .control-info {
+        position: absolute;
 
-        display: none;
+        bottom: 3px;
+
+        font-size: 7px;
     }
-
 }
