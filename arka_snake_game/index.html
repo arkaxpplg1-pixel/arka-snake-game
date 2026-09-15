@@ -1,59 +1,136 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
     <meta name="theme-color" content="#050814">
+
     <title>ARKA SNAKE GAME</title>
+
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <!-- SPLASH SCREEN -->
+
+    <!-- ==========================================
+         AUDIO
+    =========================================== -->
+
+    <!-- Musik utama -->
+    <audio
+        id="mainBackground"
+        src="background/main_background.mp4"
+        loop
+        preload="auto">
+    </audio>
+
+    <!-- Suara makan makanan -->
+    <audio
+        id="coinSound"
+        src="background/coin_sound.mp4"
+        preload="auto">
+    </audio>
+
+    <!-- Suara Game Over -->
+    <audio
+        id="gameOverSound"
+        src="background/game_over.mp4"
+        preload="auto">
+    </audio>
+
+
+    <!-- ==========================================
+         MUSIC BUTTON
+    =========================================== -->
+
+    <button id="musicButton" type="button">
+        🔊 MUSIC ON
+    </button>
+
+
+    <!-- ==========================================
+         SPLASH SCREEN
+    =========================================== -->
+
     <div id="splashScreen">
+
         <div class="scan-line"></div>
 
         <div class="splash-content">
 
             <div class="snake-logo">
+
                 <div class="logo-head">
+
                     <span class="logo-eye left"></span>
                     <span class="logo-eye right"></span>
+
                 </div>
 
                 <div class="logo-body body-1"></div>
                 <div class="logo-body body-2"></div>
                 <div class="logo-body body-3"></div>
+
             </div>
 
-            <h1>ARKA SNAKE GAME</h1>
+
+            <h1>
+                ARKA SNAKE GAME
+            </h1>
+
 
             <p class="subtitle">
                 M I N I &nbsp; S N A K E &nbsp; G A M E
             </p>
 
+
             <div class="loading-box">
+
                 <div class="loading-bar">
+
                     <div id="loadingProgress"></div>
+
                 </div>
 
+
                 <div class="loading-info">
-                    <span id="loadingText">INITIALIZING...</span>
-                    <span id="loadingPercent">0%</span>
+
+                    <span id="loadingText">
+                        INITIALIZING...
+                    </span>
+
+                    <span id="loadingPercent">
+                        0%
+                    </span>
+
                 </div>
+
             </div>
+
 
             <p class="skip-text">
                 PRESS SPACE TO SKIP
             </p>
 
         </div>
+
     </div>
 
 
-    <!-- GAME -->
+
+    <!-- ==========================================
+         GAME
+    =========================================== -->
+
     <div id="gameContainer">
+
+
+        <!-- TOP BAR -->
 
         <div class="top-bar">
 
@@ -61,10 +138,12 @@
                 ARKA <span>SNAKE</span>
             </div>
 
+
             <div class="score-box">
                 SCORE :
                 <span id="score">0</span>
             </div>
+
 
             <div class="speed-box">
                 SPEED :
@@ -74,11 +153,18 @@
         </div>
 
 
+
+        <!-- GAME AREA -->
+
         <div id="gameArea">
 
             <canvas id="gameCanvas"></canvas>
 
+
             <div id="notification"></div>
+
+
+            <!-- GAME OVER -->
 
             <div id="gameOver">
 
@@ -88,14 +174,19 @@
                         GAME OVER
                     </div>
 
+
                     <div class="final-score">
+
                         SCORE :
                         <span id="finalScore">0</span>
+
                     </div>
+
 
                     <div class="restart-text">
                         PRESS SPACE OR TAP RESTART
                     </div>
+
 
                     <button id="restartButton">
                         RESTART GAME
@@ -108,48 +199,47 @@
         </div>
 
 
-        <!-- TOUCH CONTROL -->
-        <div id="touchControls">
 
-            <button class="control-button up" data-direction="up">
-                ▲
-            </button>
+        <!-- ==========================================
+             JOYSTICK HP
+        =========================================== -->
 
-            <div class="middle-controls">
+        <div id="joystickArea">
 
-                <button class="control-button" data-direction="left">
-                    ◀
-                </button>
+            <div id="joystick">
 
-                <button class="control-button center">
+                <div id="joystickStick">
                     ●
-                </button>
-
-                <button class="control-button" data-direction="right">
-                    ▶
-                </button>
+                </div>
 
             </div>
 
-            <button class="control-button down" data-direction="down">
-                ▼
-            </button>
-
         </div>
 
+
+        <!-- CONTROL INFO DESKTOP -->
 
         <div class="control-info">
+
             <span>↑ ↓ ← →</span>
+
             <span>OR</span>
+
             <span>W A S D</span>
+
             <span>•</span>
+
             <span>SWIPE / TOUCH</span>
+
         </div>
 
+
     </div>
+
 
 
     <script src="script.js"></script>
 
 </body>
+
 </html>
