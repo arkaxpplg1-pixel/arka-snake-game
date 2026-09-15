@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#050814">
+    <title>ARKA SNAKE GAME</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ==================== SPLASH SCREEN ==================== -->
+    <div id="splashScreen">
+
+        <div class="splash-grid"></div>
+        <div class="scan-line"></div>
+
+        <div class="splash-content">
+
+            <div class="snake-logo">
+                <div class="logo-body"></div>
+
+                <div class="logo-head">
+                    <span class="logo-eye left"></span>
+                    <span class="logo-eye right"></span>
+                </div>
+            </div>
+
+            <h1>ARKA SNAKE GAME</h1>
+
+            <p class="loading-text" id="loadingText">
+                INITIALIZING SYSTEM...
+            </p>
+
+            <div class="loading-bar">
+                <div id="loadingProgress"></div>
+            </div>
+
+            <div class="loading-percent" id="loadingPercent">
+                0%
+            </div>
+
+            <p class="skip-text">
+                PRESS SPACE TO SKIP
+            </p>
+
+        </div>
+    </div>
+
+
+    <!-- ==================== GAME CONTAINER ==================== -->
+    <div id="gameContainer">
+
+        <!-- TOP BAR -->
+        <div class="top-bar">
+
+            <div class="game-title">
+                ARKA SNAKE GAME
+            </div>
+
+            <div class="game-info">
+
+                <div class="info-box">
+                    SCORE
+                    <span id="score">0</span>
+                </div>
+
+                <div class="info-box">
+                    SPEED
+                    <span id="speed">5</span>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ==================== GAME AREA ==================== -->
+        <div id="gameArea">
+
+            <canvas id="gameCanvas"></canvas>
+
+            <div id="notification"></div>
+
+            <!-- GAME OVER -->
+            <div id="gameOver">
+
+                <div class="game-over-box">
+
+                    <h2>GAME OVER</h2>
+
+                    <p>
+                        FINAL SCORE:
+                        <span id="finalScore">0</span>
+                    </p>
+
+                    <button id="restartButton">
+                        RESTART GAME
+                    </button>
+
+                    <div class="restart-info">
+                        PRESS SPACE TO PLAY AGAIN
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ==================== JOYSTICK ==================== -->
+        <div id="touchControls">
+
+            <div id="joystick">
+
+                <div id="joystickBase">
+
+                    <div class="joystick-direction up">▲</div>
+                    <div class="joystick-direction down">▼</div>
+                    <div class="joystick-direction left">◀</div>
+                    <div class="joystick-direction right">▶</div>
+
+                    <div id="joystickKnob"></div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ==================== CONTROL INFO ==================== -->
+        <div class="control-info">
+
+            <span class="desktop-control">
+                ⌨ WASD / ARROW KEYS
+            </span>
+
+            <span class="mobile-control">
+                🕹️ GESER JOYSTICK UNTUK BERGERAK
+            </span>
+
+            <span>•</span>
+
+            <span>
+                SPACE = RESTART
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
