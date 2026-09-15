@@ -1,3 +1,7 @@
+/* =========================================
+   GLOBAL
+========================================= */
+
 * {
     margin: 0;
     padding: 0;
@@ -5,7 +9,6 @@
 
     -webkit-tap-highlight-color: transparent;
 }
-
 
 html,
 body {
@@ -15,88 +18,25 @@ body {
     overflow: hidden;
 }
 
-
 body {
     background: #050814;
 
     color: white;
 
-    font-family: Arial, Helvetica, sans-serif;
-
-    touch-action: none;
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
 
     user-select: none;
-    -webkit-user-select: none;
 }
 
 
-
-/* ==========================================
-   MUSIC BUTTON
-========================================== */
-
-#musicButton {
-
-    position: fixed;
-
-    top: 18px;
-    right: 18px;
-
-    z-index: 10000;
-
-    padding: 9px 14px;
-
-    border: 1px solid rgba(0, 220, 255, 0.45);
-
-    border-radius: 6px;
-
-    background: rgba(5, 15, 30, 0.85);
-
-    color: #4de5ff;
-
-    font-size: 11px;
-
-    font-weight: bold;
-
-    letter-spacing: 1px;
-
-    cursor: pointer;
-
-    backdrop-filter: blur(5px);
-
-    box-shadow:
-        0 0 15px rgba(0, 210, 255, 0.12);
-
-    transition: 0.2s ease;
-}
-
-
-#musicButton:hover {
-
-    background: rgba(0, 180, 255, 0.18);
-
-    box-shadow:
-        0 0 20px rgba(0, 210, 255, 0.25);
-}
-
-
-#musicButton.off {
-
-    color: #718396;
-
-    border-color: rgba(100, 120, 140, 0.35);
-
-    background: rgba(10, 15, 25, 0.8);
-}
-
-
-
-/* ==========================================
+/* =========================================
    SPLASH SCREEN
-========================================== */
+========================================= */
 
 #splashScreen {
-
     position: fixed;
 
     inset: 0;
@@ -105,346 +45,326 @@ body {
 
     display: flex;
 
-    justify-content: center;
-
     align-items: center;
+    justify-content: center;
 
     overflow: hidden;
 
     background:
         radial-gradient(
             circle at center,
-            #101d3a 0%,
-            #050814 55%,
-            #02030a 100%
+            #101d38 0%,
+            #07101f 45%,
+            #03050b 100%
         );
 }
 
 
-#splashScreen::before {
+/* GRID */
 
+#splashScreen::before {
     content: "";
 
     position: absolute;
 
-    inset: 0;
+    inset: -50%;
 
     background-image:
         linear-gradient(
-            rgba(70, 180, 255, 0.08) 1px,
+            rgba(50, 120, 255, 0.06)
+            1px,
             transparent 1px
         ),
         linear-gradient(
             90deg,
-            rgba(70, 180, 255, 0.08) 1px,
+            rgba(50, 120, 255, 0.06)
+            1px,
             transparent 1px
         );
 
     background-size: 40px 40px;
 
-    animation: moveGrid 8s linear infinite;
+    transform:
+        perspective(500px)
+        rotateX(60deg);
+
+    animation:
+        gridMove 8s linear infinite;
 }
 
-
-@keyframes moveGrid {
+@keyframes gridMove {
 
     from {
-        transform: translateY(0);
+        transform:
+            perspective(500px)
+            rotateX(60deg)
+            translateY(0);
     }
 
     to {
-        transform: translateY(40px);
+        transform:
+            perspective(500px)
+            rotateX(60deg)
+            translateY(40px);
     }
 }
 
 
+/* SCAN LINE */
 
 .scan-line {
-
     position: absolute;
+
+    top: -10%;
+    left: 0;
 
     width: 100%;
     height: 2px;
 
-    top: -10px;
-
-    background: #00d9ff;
+    background:
+        rgba(80, 180, 255, 0.7);
 
     box-shadow:
-        0 0 10px #00d9ff,
-        0 0 25px #00d9ff;
+        0 0 15px
+        rgba(80, 180, 255, 0.8);
 
-    animation: scan 3s linear infinite;
+    animation:
+        scan 4s linear infinite;
 }
-
 
 @keyframes scan {
 
-    from {
-        top: -10px;
+    0% {
+        top: -5%;
     }
 
-    to {
-        top: 100%;
+    100% {
+        top: 105%;
     }
 }
 
 
+/* SPLASH CONTENT */
 
 .splash-content {
-
     position: relative;
 
-    width: min(700px, 90vw);
+    z-index: 2;
 
-    padding:
-        clamp(35px, 6vw, 60px)
-        clamp(20px, 6vw, 50px);
+    width: min(90vw, 600px);
 
     text-align: center;
-
-    border: 1px solid rgba(0, 200, 255, 0.45);
-
-    background: rgba(5, 12, 30, 0.85);
-
-    box-shadow:
-        0 0 40px rgba(0, 190, 255, 0.15),
-        inset 0 0 40px rgba(0, 190, 255, 0.05);
 }
 
 
-
-.splash-content h1 {
-
-    margin-top: 30px;
-
-    font-size: clamp(25px, 6vw, 60px);
-
-    letter-spacing: clamp(2px, 1vw, 7px);
-
-    color: #45e8ff;
-
-    text-shadow:
-        0 0 10px #00cfff,
-        0 0 30px rgba(0, 207, 255, 0.6);
-}
-
-
-
-.subtitle {
-
-    margin-top: 12px;
-
-    color: #78b8d4;
-
-    font-size: clamp(9px, 2vw, 14px);
-
-    letter-spacing: clamp(2px, 0.7vw, 4px);
-}
-
-
-
-/* ==========================================
-   SNAKE LOGO
-========================================== */
+/* =========================================
+   SPLASH LOGO
+========================================= */
 
 .snake-logo {
-
     position: relative;
 
-    width: 180px;
+    width: 110px;
     height: 110px;
 
-    margin: auto;
-
-    transform: scale(
-        clamp(0.7, 3vw, 1)
-    );
+    margin:
+        0 auto 25px;
 }
 
+
+/* LOGO HEAD */
 
 .logo-head {
-
     position: absolute;
 
-    right: 15px;
-    top: 25px;
+    top: 0;
+    left: 27px;
 
-    width: 50px;
-    height: 50px;
+    width: 55px;
+    height: 55px;
 
-    background: #167b55;
+    border-radius: 15px;
 
-    border-radius: 8px;
+    background: #20d86b;
 
     box-shadow:
-        0 0 20px rgba(40, 255, 150, 0.4);
+        0 0 15px
+        rgba(32, 216, 107, 0.7),
+
+        0 0 35px
+        rgba(32, 216, 107, 0.3);
 }
 
 
-.logo-body {
+/* LOGO EYES */
 
+.logo-eye {
     position: absolute;
 
-    width: 48px;
-    height: 48px;
+    top: 13px;
 
-    border-radius: 7px;
+    width: 8px;
+    height: 8px;
 
-    background: #20b978;
+    border-radius: 50%;
+
+    background: white;
 }
 
+.logo-eye.left {
+    left: 12px;
+}
+
+.logo-eye.right {
+    right: 12px;
+}
+
+
+/* LOGO BODY */
+
+.logo-body {
+    position: absolute;
+
+    width: 40px;
+    height: 40px;
+
+    border-radius: 10px;
+
+    background: #159b50;
+
+    box-shadow:
+        0 0 12px
+        rgba(21, 155, 80, 0.5);
+}
 
 .body-1 {
-    right: 65px;
-    top: 25px;
+    left: 2px;
+    top: 45px;
 }
-
 
 .body-2 {
-    right: 115px;
-    top: 25px;
+    left: 36px;
+    top: 60px;
 }
 
-
 .body-3 {
-    right: 115px;
+    left: 70px;
     top: 75px;
 }
 
 
-.logo-eye {
+/* =========================================
+   SPLASH TEXT
+========================================= */
 
-    position: absolute;
+.splash-content h1 {
 
-    width: 11px;
-    height: 11px;
+    font-size:
+        clamp(28px, 6vw, 48px);
 
-    top: 10px;
+    letter-spacing: 5px;
 
-    background: white;
+    color: white;
 
-    border-radius: 50%;
+    text-shadow:
+        0 0 10px
+        rgba(80, 180, 255, 0.6),
+
+        0 0 30px
+        rgba(80, 180, 255, 0.25);
+}
+
+.subtitle {
+
+    margin-top: 10px;
+
+    color: #7890a8;
+
+    font-size: 12px;
+
+    letter-spacing: 3px;
 }
 
 
-.logo-eye::after {
-
-    content: "";
-
-    position: absolute;
-
-    width: 5px;
-    height: 5px;
-
-    left: 3px;
-    top: 3px;
-
-    background: black;
-
-    border-radius: 50%;
-}
-
-
-.logo-eye.left {
-    left: 9px;
-}
-
-
-.logo-eye.right {
-    right: 9px;
-}
-
-
-
-/* ==========================================
+/* =========================================
    LOADING
-========================================== */
+========================================= */
 
 .loading-box {
 
-    width: 80%;
+    width: min(80vw, 420px);
 
-    margin: 40px auto 0;
+    margin:
+        35px auto 0;
 }
-
 
 .loading-bar {
 
     width: 100%;
-    height: 8px;
+    height: 7px;
 
     overflow: hidden;
 
-    border: 1px solid rgba(0, 220, 255, 0.5);
+    border-radius: 20px;
 
-    background: rgba(0, 0, 0, 0.4);
+    background: #162235;
+
+    border: 1px solid #24364e;
 }
-
 
 #loadingProgress {
 
     width: 0%;
     height: 100%;
 
-    background: #00d9ff;
+    background: #36a8ff;
 
     box-shadow:
-        0 0 15px #00d9ff;
+        0 0 12px
+        rgba(54, 168, 255, 0.8);
 
-    transition: width 0.1s linear;
+    transition:
+        width 0.1s linear;
 }
-
 
 .loading-info {
 
     display: flex;
 
-    justify-content: space-between;
+    justify-content:
+        space-between;
 
     margin-top: 10px;
 
-    color: #65dfff;
-
-    font-size: 12px;
-
-    letter-spacing: 2px;
-}
-
-
-.skip-text {
-
-    margin-top: 30px;
-
-    color: #657b91;
+    color: #7c91a7;
 
     font-size: 11px;
 
+    letter-spacing: 1px;
+}
+
+.skip-text {
+
+    margin-top: 25px;
+
+    color: #53687e;
+
+    font-size: 10px;
+
     letter-spacing: 2px;
-
-    animation: blink 1s infinite;
 }
 
 
-@keyframes blink {
-
-    50% {
-        opacity: 0.3;
-    }
-}
-
-
-
-/* ==========================================
+/* =========================================
    GAME CONTAINER
-========================================== */
+========================================= */
 
 #gameContainer {
 
-    display: none;
-
     width: 100%;
-    height: 100dvh;
+    height: 100%;
+
+    display: none;
 
     flex-direction: column;
 
@@ -452,103 +372,189 @@ body {
 
     justify-content: center;
 
-    padding: 10px;
-
-    background: #080c18;
-
-    overflow: hidden;
+    background:
+        radial-gradient(
+            circle at center,
+            #0a1425,
+            #050814 70%
+        );
 }
 
 
-
-/* ==========================================
+/* =========================================
    TOP BAR
-========================================== */
+========================================= */
 
 .top-bar {
 
-    width: min(94vw, 1200px);
+    width: min(92vw, 1000px);
 
     display: flex;
 
-    justify-content: space-between;
-
     align-items: center;
 
-    padding: 10px 18px;
+    justify-content:
+        space-between;
 
-    margin-bottom: 8px;
+    gap: 20px;
 
-    border: 1px solid rgba(60, 210, 255, 0.25);
+    margin-bottom: 12px;
 
-    background: rgba(12, 20, 40, 0.8);
+    padding: 10px 14px;
 
-    flex-shrink: 0;
+    border: 1px solid #1a2a40;
+
+    border-radius: 10px;
+
+    background:
+        rgba(7, 15, 28, 0.9);
+
+    box-shadow:
+        0 0 20px
+        rgba(0, 0, 0, 0.25);
 }
 
+
+/* TITLE */
 
 .game-title {
 
+    font-size: 15px;
+
     font-weight: bold;
 
-    font-size: clamp(13px, 2vw, 20px);
+    letter-spacing: 2px;
 
-    letter-spacing: 3px;
+    white-space: nowrap;
 }
-
 
 .game-title span {
-
-    color: #3ee6a2;
+    color: #36a8ff;
 }
 
+
+/* STATS */
+
+.game-stats {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: flex-end;
+
+    gap: 18px;
+}
+
+
+/* SCORE */
 
 .score-box,
 .speed-box {
 
-    font-size: clamp(10px, 1.5vw, 14px);
+    color: #8da3b8;
 
-    color: #9ab0c5;
+    font-size: 11px;
+
+    letter-spacing: 1px;
+
+    white-space: nowrap;
 }
-
 
 .score-box span,
 .speed-box span {
 
     color: white;
 
+    font-size: 13px;
+
     font-weight: bold;
 
-    margin-left: 5px;
+    margin-left: 4px;
 }
 
 
+/* =========================================
+   MUSIC BUTTON
+========================================= */
 
-/* ==========================================
+#musicButton {
+
+    min-width: 105px;
+
+    padding: 7px 11px;
+
+    border:
+        1px solid #2d5275;
+
+    border-radius: 7px;
+
+    background: #10253a;
+
+    color: #9fd5ff;
+
+    font-size: 9px;
+
+    font-weight: bold;
+
+    letter-spacing: 1px;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s,
+        border 0.2s,
+        transform 0.2s;
+}
+
+#musicButton:hover {
+
+    background: #163653;
+
+    border-color: #428aca;
+
+    transform:
+        translateY(-1px);
+}
+
+#musicButton.off {
+
+    background: #191d24;
+
+    border-color: #363d46;
+
+    color: #737d89;
+}
+
+
+/* =========================================
    GAME AREA
-========================================== */
+========================================= */
 
 #gameArea {
 
     position: relative;
 
-    width: min(94vw, 1200px);
+    width: min(92vw, 900px);
 
     aspect-ratio: 4 / 3;
 
-    max-height: calc(100dvh - 145px);
-
-    border: 2px solid rgba(50, 210, 255, 0.35);
-
-    box-shadow:
-        0 0 30px rgba(0, 190, 255, 0.08),
-        inset 0 0 40px rgba(0, 190, 255, 0.04);
-
     overflow: hidden;
 
-    flex-shrink: 1;
-}
+    border:
+        2px solid #1e3854;
 
+    border-radius: 10px;
+
+    background: #07101c;
+
+    box-shadow:
+        0 0 30px
+        rgba(0, 0, 0, 0.4),
+
+        inset 0 0 30px
+        rgba(0, 0, 0, 0.4);
+}
 
 #gameCanvas {
 
@@ -556,97 +562,80 @@ body {
 
     width: 100%;
     height: 100%;
-
-    background: #1e1e2d;
-
-    touch-action: none;
 }
 
 
-
-/* ==========================================
+/* =========================================
    NOTIFICATION
-========================================== */
+========================================= */
 
 #notification {
 
     position: absolute;
 
-    top: 45%;
+    top: 15px;
     left: 50%;
 
     transform:
-        translate(-50%, -50%);
+        translateX(-50%);
 
-    font-size: clamp(28px, 6vw, 65px);
-
-    font-weight: bold;
+    z-index: 5;
 
     color: white;
 
-    text-shadow:
-        0 0 10px #00eaff,
-        0 0 30px #00eaff;
+    font-size: 18px;
 
-    opacity: 0;
+    font-weight: bold;
+
+    letter-spacing: 2px;
 
     pointer-events: none;
 
-    white-space: nowrap;
+    opacity: 0;
 }
-
 
 #notification.show {
 
     animation:
-        notificationAnimation 1s ease-out;
+        notificationAnimation
+        0.8s ease;
 }
-
 
 @keyframes notificationAnimation {
 
     0% {
-
         opacity: 0;
 
         transform:
-            translate(-50%, -50%)
-            scale(0.5);
+            translate(-50%, -10px);
     }
 
-    30% {
-
+    25% {
         opacity: 1;
 
         transform:
-            translate(-50%, -50%)
-            scale(1.15);
+            translate(-50%, 0);
     }
 
-    70% {
-
+    75% {
         opacity: 1;
 
         transform:
-            translate(-50%, -50%)
-            scale(1);
+            translate(-50%, 0);
     }
 
     100% {
-
         opacity: 0;
 
         transform:
-            translate(-50%, -65%)
-            scale(0.9);
+            translate(-50%, -10px);
     }
 }
 
 
-
-/* ==========================================
+/* =========================================
    GAME OVER
-========================================== */
+========================================= */
 
 #gameOver {
 
@@ -654,117 +643,119 @@ body {
 
     inset: 0;
 
+    z-index: 10;
+
     display: none;
 
-    justify-content: center;
     align-items: center;
+    justify-content: center;
 
-    background: rgba(3, 7, 17, 0.75);
+    background:
+        rgba(2, 6, 12, 0.78);
 
-    backdrop-filter: blur(4px);
+    backdrop-filter:
+        blur(3px);
 }
-
-
-#gameOver.show {
-    display: flex;
-}
-
 
 .game-over-box {
 
-    width: min(400px, 85%);
+    width: min(80%, 400px);
 
-    padding:
-        clamp(25px, 5vw, 40px);
+    padding: 30px;
 
     text-align: center;
 
-    border: 1px solid rgba(0, 220, 255, 0.5);
+    border:
+        1px solid #2d5275;
 
-    background: rgba(5, 12, 25, 0.95);
+    border-radius: 12px;
+
+    background: #0b1727;
 
     box-shadow:
-        0 0 40px rgba(0, 220, 255, 0.15);
+        0 0 30px
+        rgba(0, 0, 0, 0.6);
 }
-
 
 .game-over-title {
 
-    font-size: clamp(28px, 6vw, 38px);
+    font-size:
+        clamp(28px, 5vw, 45px);
 
     font-weight: bold;
 
-    letter-spacing: 5px;
+    letter-spacing: 4px;
 
-    color: #ff5f70;
+    color: #ff5364;
 
     text-shadow:
-        0 0 15px rgba(255, 80, 100, 0.6);
+        0 0 15px
+        rgba(255, 83, 100, 0.5);
 }
-
 
 .final-score {
 
-    margin-top: 20px;
+    margin-top: 15px;
 
-    color: #a4b5c8;
+    color: #93a8bc;
+
+    font-size: 13px;
+
+    letter-spacing: 1px;
 }
-
 
 .final-score span {
 
     color: white;
 
-    font-size: 25px;
+    font-size: 20px;
 
     font-weight: bold;
 }
 
-
 .restart-text {
 
-    margin-top: 25px;
+    margin-top: 18px;
 
-    color: #4de5ff;
+    color: #71869a;
 
-    font-size: 11px;
+    font-size: 10px;
 
     letter-spacing: 1px;
 }
-
 
 #restartButton {
 
     margin-top: 20px;
 
-    padding: 12px 25px;
+    padding: 11px 22px;
 
-    border: 1px solid #00d9ff;
+    border:
+        1px solid #2d5275;
 
-    background: rgba(0, 180, 255, 0.12);
+    border-radius: 7px;
 
-    color: #4de5ff;
+    background: #10253a;
+
+    color: #9fd5ff;
+
+    font-size: 10px;
 
     font-weight: bold;
 
+    letter-spacing: 1px;
+
     cursor: pointer;
+}
 
-    border-radius: 5px;
+#restartButton:hover {
+    background: #163653;
 }
 
 
-#restartButton:active {
-
-    transform: scale(0.95);
-
-    background: rgba(0, 180, 255, 0.3);
-}
-
-
-
-/* ==========================================
+/* =========================================
    JOYSTICK
-========================================== */
+========================================= */
 
 #joystickArea {
 
@@ -773,7 +764,7 @@ body {
     width: 140px;
     height: 140px;
 
-    margin-top: 8px;
+    margin-top: 10px;
 
     align-items: center;
     justify-content: center;
@@ -782,198 +773,127 @@ body {
 
     touch-action: none;
 }
-
 
 #joystick {
 
     position: relative;
 
-    width: 125px;
-    height: 125px;
+    width: 120px;
+    height: 120px;
 
     border-radius: 50%;
 
-    border: 2px solid rgba(60, 220, 255, 0.35);
+    border:
+        2px solid #274766;
 
     background:
         radial-gradient(
             circle,
-            rgba(30, 90, 120, 0.35),
-            rgba(5, 15, 30, 0.75)
+            #142b43,
+            #091524
         );
 
     box-shadow:
-        inset 0 0 25px rgba(0, 200, 255, 0.12),
-        0 0 20px rgba(0, 200, 255, 0.08);
+        inset 0 0 20px
+        rgba(0, 0, 0, 0.6),
+
+        0 0 20px
+        rgba(0, 0, 0, 0.3);
 
     touch-action: none;
 }
-
-
-#joystick::before {
-
-    content: "▲";
-
-    position: absolute;
-
-    top: 9px;
-    left: 50%;
-
-    transform: translateX(-50%);
-
-    color: rgba(80, 220, 255, 0.35);
-
-    font-size: 12px;
-}
-
-
-#joystick::after {
-
-    content: "▼";
-
-    position: absolute;
-
-    bottom: 9px;
-    left: 50%;
-
-    transform: translateX(-50%);
-
-    color: rgba(80, 220, 255, 0.35);
-
-    font-size: 12px;
-}
-
 
 #joystickStick {
 
     position: absolute;
 
-    left: 50%;
     top: 50%;
+    left: 50%;
 
-    width: 55px;
-    height: 55px;
+    width: 52px;
+    height: 52px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
 
     transform:
         translate(-50%, -50%);
 
-    display: flex;
-
-    justify-content: center;
-    align-items: center;
-
     border-radius: 50%;
 
-    border: 2px solid rgba(80, 230, 255, 0.65);
+    background: #1b5f8e;
 
-    background:
-        radial-gradient(
-            circle,
-            #1a7895,
-            #0b3045
-        );
+    border:
+        2px solid #4a9bd0;
 
-    color: #5eeaff;
+    color: #bde5ff;
 
-    font-size: 25px;
+    font-size: 20px;
 
     box-shadow:
-        0 0 20px rgba(0, 210, 255, 0.25);
+        0 0 15px
+        rgba(40, 150, 220, 0.4);
 
     touch-action: none;
-
-    transition: transform 0.08s ease;
 }
 
 
-#joystick.active #joystickStick {
-
-    background:
-        radial-gradient(
-            circle,
-            #239fc1,
-            #0b3d55
-        );
-
-    box-shadow:
-        0 0 25px rgba(0, 220, 255, 0.45);
-}
-
-
-
-/* ==========================================
+/* =========================================
    CONTROL INFO
-========================================== */
+========================================= */
 
 .control-info {
 
-    width: min(94vw, 1200px);
-
     display: flex;
 
+    align-items: center;
     justify-content: center;
 
     gap: 12px;
 
-    margin-top: 7px;
+    margin-top: 12px;
 
-    color: #667b91;
+    color: #586d82;
 
-    font-size: 10px;
+    font-size: 9px;
 
     letter-spacing: 1px;
+}
 
-    flex-shrink: 0;
+.control-info span:first-child,
+.control-info span:nth-child(3) {
+    color: #7c94aa;
 }
 
 
-
-/* ==========================================
+/* =========================================
    TABLET
-========================================== */
+========================================= */
 
 @media (max-width: 900px) {
 
-    #gameArea {
-
-        width: 92vw;
-    }
-
-
     .top-bar {
-
-        width: 92vw;
+        width: 94vw;
     }
 
-
-    .control-info {
-
-        width: 92vw;
+    #gameArea {
+        width: 94vw;
     }
 }
 
 
-
-/* ==========================================
-   HP
-========================================== */
+/* =========================================
+   MOBILE
+========================================= */
 
 @media (max-width: 600px) {
 
-    #musicButton {
-
-        top: 8px;
-        right: 8px;
-
-        padding: 7px 9px;
-
-        font-size: 9px;
-    }
-
-
     #gameContainer {
 
-        justify-content: flex-start;
+        justify-content:
+            flex-start;
 
         padding-top: 8px;
     }
@@ -986,21 +906,52 @@ body {
         padding: 8px 10px;
 
         margin-bottom: 6px;
+
+        gap: 8px;
     }
 
 
     .game-title {
 
-        font-size: 12px;
+        font-size: 11px;
 
         letter-spacing: 1px;
+    }
+
+
+    .game-stats {
+
+        gap: 7px;
     }
 
 
     .score-box,
     .speed-box {
 
+        font-size: 8px;
+
+        letter-spacing: 0;
+    }
+
+
+    .score-box span,
+    .speed-box span {
+
         font-size: 10px;
+
+        margin-left: 2px;
+    }
+
+
+    #musicButton {
+
+        min-width: auto;
+
+        padding: 6px 7px;
+
+        font-size: 7px;
+
+        letter-spacing: 0;
     }
 
 
@@ -1016,101 +967,14 @@ body {
     }
 
 
-    /* TAMPILKAN JOYSTICK */
-
     #joystickArea {
 
         display: flex;
-    }
-
-
-    .control-info {
-
-        display: none;
-    }
-
-
-    .snake-logo {
-
-        transform: scale(0.7);
-    }
-
-
-    .splash-content h1 {
-
-        font-size: 28px;
-
-        letter-spacing: 2px;
-    }
-
-
-    .subtitle {
-
-        font-size: 9px;
-
-        letter-spacing: 2px;
-    }
-
-
-    .loading-box {
-
-        width: 95%;
-
-        margin-top: 25px;
-    }
-
-
-    .loading-info {
-
-        font-size: 9px;
-    }
-
-
-    .skip-text {
-
-        margin-top: 20px;
-    }
-}
-
-
-
-/* ==========================================
-   HP KECIL
-========================================== */
-
-@media (max-width: 380px) {
-
-    .top-bar {
-
-        padding: 6px 8px;
-    }
-
-
-    .game-title {
-
-        font-size: 10px;
-    }
-
-
-    .score-box,
-    .speed-box {
-
-        font-size: 9px;
-    }
-
-
-    #gameArea {
-
-        width: 96vw;
-    }
-
-
-    #joystickArea {
 
         width: 125px;
         height: 125px;
 
-        margin-top: 4px;
+        margin-top: 8px;
     }
 
 
@@ -1126,56 +990,62 @@ body {
         width: 48px;
         height: 48px;
 
-        font-size: 20px;
+        font-size: 18px;
+    }
+
+
+    .control-info {
+        display: none;
     }
 }
 
 
+/* =========================================
+   SMALL MOBILE
+========================================= */
 
-/* ==========================================
-   LANDSCAPE HP
-========================================== */
-
-@media (max-height: 500px) and (orientation: landscape) {
-
-    #gameContainer {
-
-        justify-content: flex-start;
-
-        padding-top: 4px;
-    }
-
+@media (max-width: 380px) {
 
     .top-bar {
-
-        margin-bottom: 4px;
-
-        padding: 5px 10px;
+        padding: 6px 8px;
     }
 
+    .game-title {
+        font-size: 9px;
+    }
+
+    .game-stats {
+        gap: 5px;
+    }
+
+    .score-box,
+    .speed-box {
+        font-size: 7px;
+    }
+
+    .score-box span,
+    .speed-box span {
+        font-size: 9px;
+    }
+
+    #musicButton {
+
+        padding: 5px 6px;
+
+        font-size: 6px;
+    }
 
     #gameArea {
-
-        width: min(80vw, 900px);
-
-        max-height: 70vh;
-
-        aspect-ratio: 16 / 9;
+        width: 96vw;
     }
-
 
     #joystickArea {
 
-        position: fixed;
+        width: 115px;
+        height: 115px;
 
-        left: 10px;
-        bottom: 10px;
-
-        margin: 0;
-
-        z-index: 20;
+        margin-top: 5px;
     }
-
 
     #joystick {
 
@@ -1183,16 +1053,51 @@ body {
         height: 100px;
     }
 
-
     #joystickStick {
 
-        width: 45px;
-        height: 45px;
+        width: 44px;
+        height: 44px;
+
+        font-size: 16px;
+    }
+}
+
+
+/* =========================================
+   LANDSCAPE MOBILE
+========================================= */
+
+@media (max-width: 900px)
+and (orientation: landscape) {
+
+    #gameContainer {
+        padding-top: 5px;
     }
 
+    .top-bar {
+        margin-bottom: 4px;
+    }
+
+    #gameArea {
+
+        height: 72vh;
+
+        width: auto;
+
+        aspect-ratio: 4 / 3;
+    }
+
+    #joystickArea {
+
+        position: absolute;
+
+        right: 15px;
+        bottom: 15px;
+
+        margin: 0;
+    }
 
     .control-info {
-
         display: none;
     }
 }
