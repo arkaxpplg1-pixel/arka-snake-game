@@ -7,7 +7,7 @@ const confettiCanvas = document.getElementById("confettiCanvas");
 const confettiCtx = confettiCanvas.getContext("2d");
 
 const GRID_SIZE = 20;
-let FOOD_COUNT = 40;
+let FOOD_COUNT = 30;
 
 let canvasWidth = 800;
 let canvasHeight = 600;
