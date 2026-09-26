@@ -7,153 +7,112 @@
     <title>ARKA SNAKE GAME</title>
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
     <!-- ==================== SPLASH SCREEN ==================== -->
     <div id="splashScreen">
-
         <div class="splash-grid"></div>
         <div class="scan-line"></div>
-
         <div class="splash-content">
-
             <div class="snake-logo">
                 <div class="logo-body"></div>
-
                 <div class="logo-head">
                     <span class="logo-eye left"></span>
                     <span class="logo-eye right"></span>
                 </div>
             </div>
-
             <h1>ARKA SNAKE GAME</h1>
-
-            <p class="loading-text" id="loadingText">
-                INITIALIZING SYSTEM...
-            </p>
-
+            <p class="loading-text" id="loadingText">INITIALIZING SYSTEM...</p>
             <div class="loading-bar">
                 <div id="loadingProgress"></div>
             </div>
-
-            <div class="loading-percent" id="loadingPercent">
-                0%
-            </div>
-
-            <p class="skip-text">
-                PRESS SPACE TO SKIP
-            </p>
-
+            <div class="loading-percent" id="loadingPercent">0%</div>
+            <p class="skip-text">PRESS SPACE TO SKIP</p>
         </div>
     </div>
 
+    <!-- ==================== MENU SCREEN ==================== -->
+    <div id="menuScreen" style="display: none;">
+        <div class="splash-grid"></div>
+        <div class="menu-box">
+            <h2>CUSTOMIZE GAME</h2>
+            <div class="menu-group">
+                <label for="playerName">NAMA PEMAIN</label>
+                <input type="text" id="playerName" placeholder="Masukkan Nama..." maxlength="15" value="PLAYER 1">
+            </div>
+            <div class="menu-group">
+                <label>PILIH MODE / TEMA</label>
+                <div class="mode-options">
+                    <button class="mode-btn active" data-mode="default">DEFAULT</button>
+                    <button class="mode-btn" data-mode="fruit">FRUIT</button>
+                    <button class="mode-btn" data-mode="christmas">CHRISTMAS</button>
+                    <button class="mode-btn" data-mode="sweety">SWEETY</button>
+                </div>
+            </div>
+            <button id="startMenuButton">SIAP MULAI GAME</button>
+        </div>
+    </div>
 
     <!-- ==================== GAME CONTAINER ==================== -->
     <div id="gameContainer">
-
         <!-- TOP BAR -->
         <div class="top-bar">
-
-            <div class="game-title">
-                ARKA SNAKE GAME
-            </div>
-
+            <div class="game-title" id="displayPlayerName">ARKA SNAKE</div>
             <div class="game-info">
-
                 <div class="info-box">
                     SCORE
                     <span id="score">0</span>
                 </div>
-
                 <div class="info-box">
                     SPEED
                     <span id="speed">5</span>
                 </div>
-
             </div>
-
         </div>
-
 
         <!-- ==================== GAME AREA ==================== -->
         <div id="gameArea">
-
             <canvas id="gameCanvas"></canvas>
-
             <div id="notification"></div>
+            <canvas id="confettiCanvas"></canvas>
 
             <!-- GAME OVER -->
             <div id="gameOver">
-
                 <div class="game-over-box">
-
                     <h2>GAME OVER</h2>
-
-                    <p>
-                        FINAL SCORE :
-                        <span id="finalScore">0</span>
-                    </p>
-
-                    <button id="restartButton">
-                        RESTART GAME
-                    </button>
-
-                    <div class="restart-info">
-                        PRESS SPACE TO PLAY AGAIN
+                    <p>PLAYER : <span id="finalPlayerName">-</span></p>
+                    <p>FINAL SCORE : <span id="finalScore">0</span></p>
+                    <p>PREDIKAT : <span id="predikatText" style="color: #38bdf8;">-</span></p>
+                    
+                    <div class="game-over-buttons">
+                        <button id="restartButton">MAIN LAGI</button>
+                        <button id="menuButton">MENU UTAMA</button>
                     </div>
-
+                    <div class="restart-info">PRESS SPACE TO RESTART</div>
                 </div>
-
             </div>
-
         </div>
 
-
-        <!-- ==================== JOYSTICK ==================== -->
+        <!-- ==================== MODERN TOUCH CONTROLS (D-PAD) ==================== -->
         <div id="touchControls">
-
-            <div id="joystick">
-
-                <div id="joystickBase">
-
-                    <div class="joystick-direction up">▲</div>
-                    <div class="joystick-direction down">▼</div>
-                    <div class="joystick-direction left">◀</div>
-                    <div class="joystick-direction right">▶</div>
-
-                    <div id="joystickKnob"></div>
-
-                </div>
-
+            <div class="dpad-container">
+                <button class="dpad-btn dpad-up" data-dir="up">▲</button>
+                <button class="dpad-btn dpad-left" data-dir="left">◀</button>
+                <div class="dpad-center"></div>
+                <button class="dpad-btn dpad-right" data-dir="right">▶</button>
+                <button class="dpad-btn dpad-down" data-dir="down">▼</button>
             </div>
-
         </div>
-
 
         <!-- ==================== CONTROL INFO ==================== -->
         <div class="control-info">
-
-            <span class="desktop-control">
-                ⌨ WASD / ARROW KEYS
-            </span>
-
-            <span class="mobile-control">
-                🕹️ GESER JOYSTICK UNTUK BERGERAK
-            </span>
-
+            <span class="desktop-control">⌨ WASD / ARROW KEYS</span>
+            <span class="mobile-control">🕹️ KLIK TOMBOL ARAH DI LAYAR</span>
             <span>•</span>
-
-            <span>
-                SPACE = RESTART
-            </span>
-
+            <span>SPACE = RESTART</span>
         </div>
-
     </div>
 
-
     <script src="script.js"></script>
-
 </body>
 </html>
