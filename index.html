@@ -32,32 +32,81 @@
     </div>
 
     <!-- ==================== MENU SCREEN ==================== -->
-    <div id="menuScreen" style="display: none;">
+    <div id="menuScreen" data-theme="default" style="display: none;">
         <div class="splash-grid"></div>
-        <div class="menu-box">
-            <h2>CUSTOMIZE GAME</h2>
-            <div class="menu-group">
-                <label for="playerName">NAMA PEMAIN</label>
-                <input type="text" id="playerName" placeholder="Masukkan Nama..." maxlength="15" value="PLAYER 1">
+        <div class="menu-glow menu-glow-left"></div>
+        <div class="menu-glow menu-glow-right"></div>
+        <main class="menu-box" aria-labelledby="customizeTitle">
+            <div class="menu-layout">
+                <section class="menu-settings">
+                    <div class="menu-heading">
+                        <span class="menu-kicker"><span class="status-dot"></span> ARKA SNAKE GAME</span>
+                        <h2 id="customizeTitle">CUSTOMIZE <span>YOUR RUN</span></h2>
+                        <p>Torehkan namamu, ciptakan suasana favoritmu, dan bersiaplah menguasai papan skor!</p>
+                    </div>
+                    <div class="menu-group">
+                        <label for="playerName"><span>01</span> NAMA PEMAIN</label>
+                        <div class="name-input-wrap">
+                            <span class="input-prefix">ID</span>
+                            <input type="text" id="playerName" placeholder="Masukkan nama..." maxlength="15" value="PLAYER 1" autocomplete="off">
+                            <span class="input-indicator" aria-hidden="true"></span>
+                        </div>
+                    </div>
+                    <div class="menu-group">
+                        <label id="themeLabel"><span>02</span> PILIH MODE / TEMA</label>
+                        <div class="mode-options" role="group" aria-labelledby="themeLabel">
+                            <button class="mode-btn active" type="button" data-mode="default" data-label="NEON GRID" aria-pressed="true">
+                                <span class="mode-icon icon-default" aria-hidden="true">✦</span>
+                                <span class="mode-copy"><strong>DEFAULT</strong><small>NEON GRID</small></span>
+                                <span class="mode-check" aria-hidden="true">✓</span>
+                            </button>
+                            <button class="mode-btn" type="button" data-mode="fruit" data-label="PIXEL GARDEN" aria-pressed="false">
+                                <span class="mode-icon icon-fruit" aria-hidden="true">✿</span>
+                                <span class="mode-copy"><strong>FRUIT</strong><small>PIXEL GARDEN</small></span>
+                                <span class="mode-check" aria-hidden="true">✓</span>
+                            </button>
+                            <button class="mode-btn" type="button" data-mode="christmas" data-label="FROSTBYTE" aria-pressed="false">
+                                <span class="mode-icon icon-christmas" aria-hidden="true">❄</span>
+                                <span class="mode-copy"><strong>CHRISTMAS</strong><small>FROSTBYTE</small></span>
+                                <span class="mode-check" aria-hidden="true">✓</span>
+                            </button>
+                            <button class="mode-btn" type="button" data-mode="sweety" data-label="SWEET SIGNAL" aria-pressed="false">
+                                <span class="mode-icon icon-sweety" aria-hidden="true">♡</span>
+                                <span class="mode-copy"><strong>SWEETY</strong><small>SWEET SIGNAL</small></span>
+                                <span class="mode-check" aria-hidden="true">✓</span>
+                            </button>
+                        </div>
+                    </div>
+                    <button id="startMenuButton" type="button">
+                        SIAP MULAI GAME
+                    </button>
+                </section>
+                <aside class="theme-preview" aria-live="polite" aria-label="Preview tema terpilih">
+                    <div class="preview-topline"><span>LIVE PREVIEW</span><span class="preview-pulse"></span></div>
+                    <div class="preview-stage">
+                        <div class="preview-orbit orbit-one"></div>
+                        <div class="preview-orbit orbit-two"></div>
+                        <div class="preview-snake" aria-hidden="true">
+                            <i></i><i></i><i></i><i></i><i class="snake-head"><b></b><b></b></i>
+                        </div>
+                        <div class="preview-food food-one" aria-hidden="true"></div>
+                        <div class="preview-food food-two" aria-hidden="true"></div>
+                        <span class="preview-coordinates">GRID / 20 × 20</span>
+                    </div>
+                    <div class="preview-caption">
+                        <span class="preview-label">SELECTED WORLD</span>
+                        <strong id="themePreviewName">NEON GRID</strong>
+                        <span class="preview-ready"><span></span> SYSTEM READY</span>
+                    </div>
+                </aside>
             </div>
-            <div class="menu-group">
-                <label>PILIH MODE / TEMA</label>
-                <div class="mode-options">
-                    <button class="mode-btn active" data-mode="default">DEFAULT</button>
-                    <button class="mode-btn" data-mode="fruit">FRUIT</button>
-                    <button class="mode-btn" data-mode="christmas">CHRISTMAS</button>
-                    <button class="mode-btn" data-mode="sweety">SWEETY</button>
-                </div>
-            </div>
-            <button id="startMenuButton">SIAP MULAI GAME</button>
-        </div>
+        </main>
     </div>
 
     <!-- ==================== GAME CONTAINER ==================== -->
-    <div id="gameContainer">
+    <div id="gameContainer" data-theme="default">
         <!-- TOP BAR -->
         <div class="top-bar">
-            <div class="game-title" id="displayPlayerName">ARKA SNAKE</div>
             <div class="game-info">
                 <div class="info-box">
                     SCORE
@@ -65,7 +114,7 @@
                 </div>
                 <div class="info-box">
                     SPEED
-                    <span id="speed">5</span>
+                    <span id="speed">1</span>
                 </div>
             </div>
         </div>
@@ -73,6 +122,7 @@
         <!-- ==================== GAME AREA ==================== -->
         <div id="gameArea">
             <canvas id="gameCanvas"></canvas>
+            <div class="game-title" id="displayPlayerName">PLAYER 1</div>
             <div id="notification"></div>
             <canvas id="confettiCanvas"></canvas>
 
